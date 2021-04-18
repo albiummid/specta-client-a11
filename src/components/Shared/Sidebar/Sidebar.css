@@ -1,7 +1,7 @@
 .sidebar{
     text-align: left;
     width: 350px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #293339 ;
 
 }
@@ -28,6 +28,9 @@
 
 }
 @media (max-width:768px){
+    .sidebar{
+        min-height:0;
+    }
     .bar{
         display:grid;
         justify-content: center;
@@ -40,7 +43,7 @@
         padding: 10px;
     }
     .sidebar{
-        height: 110%;
+        max-height: 110%;
         width: 100%;
     }
 

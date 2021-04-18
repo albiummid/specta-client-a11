@@ -6,8 +6,7 @@ const PricingCard = ({ data,handleClick }) => {
         <div className="pricing-card">     
                 <h2> {title} </h2>
             <div className="price-div">
-                <span>৳</span> <h1> {price} </h1>
-             
+                <h2>৳</h2> <h1> {price} </h1>
             </div>
             <p>{ subType}</p>
                 
