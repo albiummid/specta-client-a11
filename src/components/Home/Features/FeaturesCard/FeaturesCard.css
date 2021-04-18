@@ -1,0 +1,28 @@
+.features-card{
+    display: grid;
+    grid-template-rows: 80px 40px 60px;
+    grid-gap: 1rem;
+    text-align: center;
+    max-width: 400px;
+    padding: 30px ;
+    transition: all .3s ease-in;
+    border-radius: 10px;
+}
+.features-card:hover{
+    border: 1px solid teal;
+    cursor: pointer;
+ transform: translateY(-10%) translateX(-2%);
+ box-shadow: 0 10px 30px gray;
+    
+}
+.features-card img{
+    margin: 0 auto;
+    width:80px;
+   padding: 5px;
+    border-radius: 5%;
+    transition: all .3s ease-in-out;
+}
+.features-card img:hover{
+   transform: translateX(10%) translateY(-20%);
+
+}

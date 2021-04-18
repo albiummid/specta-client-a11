@@ -1,0 +1,10 @@
+.footer-col  li{
+    margin: 1rem auto;
+}
+.footer-col  a{
+    text-decoration: none;
+    color: hsl(0, 4%, 78%);
+}
+.footer-col a:hover{
+    color: white;
+}

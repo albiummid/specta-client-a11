@@ -1,0 +1,143 @@
+.sign-card{
+    border-left: 3px solid teal;
+    border-right: 2px solid teal;
+    justify-content: center;
+    display:flex;
+    width: 650px;
+    margin: 200px auto;
+    /* padding: 20px; */
+    box-shadow: 10px 10px 15px gray;
+    border-radius: 10px;
+   
+    
+}
+.input-group span{
+    border-bottom: 1px solid teal;
+    padding-bottom: 2px;
+}
+.input-div,.img-div{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.input-group {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;    
+}
+.input-group input{
+    border: none;
+    width: 90%;
+    height: 30px;
+    padding: 6px 20px;
+    font-size: large;
+    /* box-sizing: border-box; */
+    border-bottom: 1px solid teal;
+    background-color: white;
+}
+
+ input:focus,select:focus, textarea:focus{
+    box-shadow: none;
+    outline: none;
+    background-color: white;
+}
+
+.input-div,.img-div {
+    width: 300px;
+  display: grid;
+  grid-template-rows: 350px 50px ;
+  justify-content: center;
+}
+    
+
+.img-div button{
+ width: 200px;
+ height:40px;
+ margin: 0px auto;
+ border: none;
+ background-color: teal;
+ color: white;
+ /* box-sizing: border-box; */
+ border-radius: 5px;
+ opacity: 0.8;
+margin-top:10px ;
+cursor: pointer;
+}
+.img-div button:focus{
+    box-shadow: none;
+    outline: none;
+    opacity: 1;
+}
+.img-div button:hover{
+    opacity: 1;
+}
+#checkbox{
+    display: inline-block;
+    width: 10px;
+}
+.social-links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border:1px solid teal;
+    border-radius: 5px;
+}
+ 
+.social-links button{
+cursor: pointer;
+    background-color: white;
+    border: none;
+    
+}
+.social-links button:focus{
+    outline: none;
+    opacity: 0.5;
+}
+.social-links button:hover{
+   
+    opacity: 0.5;
+}
+.btn{
+    width: 90px;
+    height: 40px;
+    box-shadow: none;
+    border-radius: 5px;
+    
+ border: 1px solid teal;
+    font-size: 15px;
+    font-weight: 200;
+    cursor: pointer;
+    outline: none;
+    background-color: teal;
+  
+    color:white;
+}
+
+.btn:hover{
+    background-color: white;
+ color: teal;
+    
+    border: 1px solid teal;
+}
+
+
+@media(max-width:900px){
+    .input-group span{
+        padding-bottom: 4px;
+    }
+    .sign-card{
+        display: flex;
+        flex-direction: column-reverse;
+        width: 320px;
+    }
+    .img-div{
+        border-top: 1px solid teal;
+        padding-top: 30px;
+    }
+    .input-div{
+        padding-bottom: 30px;
+    }
+    .input-div,.img-div{
+        margin:0 auto;
+    }
+   
+}

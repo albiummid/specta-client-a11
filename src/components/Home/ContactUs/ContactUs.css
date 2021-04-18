@@ -1,0 +1,29 @@
+.contact-img img{
+    width: 100%;
+    padding-bottom: 20px;
+}
+.contact-img {
+    max-width: 400px;
+}
+.contact-container{
+    box-shadow: 0 10px 30px gray;
+    justify-content: center;
+    padding: 10px ;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,400px);
+}
+.contact-container form{
+    width: 100%;
+}
+.contact-container input,textarea{
+width: 100%;
+}
+.contact-container textarea{
+    height: 100%;
+}
+#contactUs{
+    margin: 50px auto;
+}

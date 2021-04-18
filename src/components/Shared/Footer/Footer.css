@@ -1,0 +1,27 @@
+.footer{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color:hsl(203, 21%, 15%) ;
+}
+.brand-info{
+    margin-bottom: 1px solid teal;
+}
+.link-div{
+    display: grid;
+    grid-template-columns: repeat(3,200px);
+    grid-gap: 2rem;
+}
+.footer-end{
+    text-align: center;
+    margin: 50px auto;
+}
+@media(max-width:768px){
+    .link-div{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

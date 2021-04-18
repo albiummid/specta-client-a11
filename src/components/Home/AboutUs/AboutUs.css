@@ -1,0 +1,18 @@
+.about-container{
+
+    display: grid;
+    margin: 10px 50px ;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 5rem;
+    grid-template-columns: repeat(auto-fit,minmax(350px,500px));
+    text-align: left;
+}
+.about-img{
+    width:100%;
+}
+@media(max-width:768px){
+    .about-container{
+        margin: 3px;
+    }
+}

@@ -1,0 +1,36 @@
+.testimonial-card{
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    transition: all .4s ease;
+    border:1px solid tomato;
+}
+.testimonial-card:hover{
+
+    box-shadow: 0 15px 20px tomato;
+transform: translateX(5%) translateY(-5%);
+}
+.review-info img{
+    width: 50px;
+}
+.review-info{
+   display: block;
+}
+#end{
+float:right;
+}
+.review-user img{
+    margin: 10px auto; 
+    padding: auto;   
+    width: 200px;
+    height: 200px ;
+    clip-path: circle();
+transition: all 0.4s ease;
+}
+.review-user img:hover{
+    transform: scale(1.1);
+}
+.review-user{
+    text-align: center;
+}

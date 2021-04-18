@@ -1,0 +1,9 @@
+.select-div{
+    display: flex;
+    gap: 1rem;
+    margin: 5px auto;
+}
+.select-container{
+    display: grid;
+    grid-template-columns: auto;
+}

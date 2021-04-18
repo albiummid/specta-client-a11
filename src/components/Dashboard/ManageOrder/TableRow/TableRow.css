@@ -1,0 +1,16 @@
+td{
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #f2f2f2;
+}
+
+.delete-btn{
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+}
+.delete-btn:hover{
+    opacity: .7;
+}

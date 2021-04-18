@@ -1,0 +1,22 @@
+.mini-card-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,400px);
+    grid-gap: 3rem;
+    grid-template-rows: 1fr;
+    margin: 50px auto;
+justify-content: center;
+
+}
+.features{
+    padding: 50px 100px;
+
+}
+.section-header{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 0;
+    text-align: center;
+}
+.section-header h1{
+    margin: 20px auto;
+}

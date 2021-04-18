@@ -1,0 +1,150 @@
+.navbar{
+    display:flex;
+    justify-content: space-between;
+   padding:0 30px;
+    height:60px;
+    background-color:hsl(203, 21%, 15%) ;
+    align-items:center
+}
+.nav-links{
+    display:flex;
+    
+}
+.nav-link-mobile {
+    white-space: nowrap;
+    text-decoration: none;
+    color:white;
+    display: none;
+  }
+.nav-links>ul,li{
+    text-decoration: none;
+    list-style: none;
+
+}
+.nav-link{
+    white-space: nowrap;
+    text-decoration: none;
+    color:white;
+}
+
+.logo-div > *{
+    text-transform: uppercase;
+    word-spacing: nowrap;
+    letter-spacing:.25rem;
+    color:white;
+    margin-left: 3px;
+}
+.logo-div{
+    text-decoration: none;
+    cursor:pointer;
+display:flex;
+align-items: center;
+
+}
+.nav-item{
+  display: flex;
+  align-items: center;
+  height: 60px;
+    margin-left: 2rem;
+}
+.menu-icon{
+    color: white;
+    display: none;
+}
+.nav-btn{
+  cursor: pointer;
+  font-weight: 800;
+    white-space: nowrap;
+width: 100px;
+height: 40px;
+color: white;
+border: none;
+outline: none;
+border-radius: 5px;
+background-color: #d4543d;
+transition: all 0.2s ease-in;
+
+}
+.nav-btn:active{
+  transform: translateX(5%);
+  opacity: .7;
+}
+
+.nav-link-active{
+  border-bottom: 5px solid tomato;
+}
+@media(max-width:768px) {
+    .nav-item{
+     
+        height: 90px;
+      }
+      .nav-links{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+      }
+      .nav-links.active {
+        background: #242222;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+      .nav-link,.user-name {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+        transition: all .4s ease;
+      }
+    
+      .nav-link:hover {
+        background-color: #17a2b8;
+        border-radius: 0;
+        width: 50%;
+        margin: 0 auto;
+      }
+      .menu-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+      .nav-link-mobile {
+        display: block;
+        text-align: center;
+        padding: 1.5rem;
+        margin: 2rem auto;
+        border-radius: 4px;
+        background: #17a2b8;
+        text-decoration: none;
+        color: #fff;
+        width: 50%;
+        transition: all .4s ease;
+      }
+      .nav-link-mobile:hover {
+        
+        background: #fff;
+        color: #17a2b8;
+      
+      }
+      .navbar {
+        color: black;
+        height:80px;
+         }
+         .nav-btn {
+            display: none;
+          }
+          .nav-link-active{
+            color: tomato;
+            border: none;
+          }
+}

@@ -1,0 +1,43 @@
+.order-list-card{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+transition: all .4s ease;
+border-radius: 10px;
+border: 1px solid teal;
+}
+.order-list-card:hover{
+    transform: translateX(5%) translateY(-5%);
+    box-shadow: 0 10px 30px gray;
+}
+.order-header{
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.Pending{
+    background-color: tomato;
+    padding: 8px;
+    color:white;
+    border-radius: 5px;
+}
+.Proccessing{
+    background-color:blueviolet;
+    padding: 8px;
+    color:white;
+    border-radius: 5px;
+}
+.Done{
+    background-color: teal;
+    padding: 8px;
+    color:white;
+    border-radius: 5px;
+}
+.order-info{
+    margin: 10px 0;
+    padding-left:32px;
+    text-align: left;
+}
