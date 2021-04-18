@@ -4,7 +4,7 @@ import TestimonialCard from './TestimonialCard/TestimonialCard';
 const Testimonial = () => {
     const [reviewData, setReviewData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://specta-web.herokuapp.com/reviews')
             .then(res => res.json())
         .then(data => setReviewData(data))
         

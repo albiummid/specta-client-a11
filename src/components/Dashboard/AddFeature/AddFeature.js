@@ -11,7 +11,7 @@ const AddFeature = () => {
         formData.append('subject', data.subject);
         formData.append('details', data.details);
 
-  fetch('http://localhost:5000/addAFeature', {
+  fetch('https://specta-web.herokuapp.com/addAFeature', {
     method: 'POST',
     body: formData
   })

@@ -18,7 +18,7 @@ const AddService = () => {
         formData.append('bdix', data.bdix);
         formData.append('router', data.router);
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://specta-web.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })

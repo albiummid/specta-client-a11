@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 const AddAdmin = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-  fetch('http://localhost:5000/addAdmin', {
+  fetch('https://specta-web.herokuapp.com/addAdmin', {
       method: 'POST',
       headers: {
           "content-type":"application/json"

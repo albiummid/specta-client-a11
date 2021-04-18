@@ -7,7 +7,7 @@ const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     
     useEffect(() => {
-        fetch(`http://localhost:5000/isAdmin?email=${loggedInUser.email}`)
+        fetch(`https://specta-web.herokuapp.com/isAdmin?email=${loggedInUser.email}`)
         .then(res => res.json())
             .then(data => {
                 console.log(data);

@@ -6,13 +6,13 @@ const ManageOrder = () => {
     const [update,setUpdate] = useState(false)
     const [allOrders, setAllOrders] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/allOrders')
+        fetch('https://specta-web.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [update]);
     console.log(allOrders);
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/deleteOrder/${id}`, {
+        fetch(`https://specta-web.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -25,7 +25,7 @@ const ManageOrder = () => {
     }
     const handleUpdate = (updatedData) => {
         const { id, value } = updatedData;
-        fetch(`http://localhost:5000/updateOrder/${id}`, {
+        fetch(`https://specta-web.herokuapp.com/updateOrder/${id}`, {
             method: "PATCH",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({status:value})

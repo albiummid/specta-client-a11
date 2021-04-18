@@ -5,7 +5,7 @@ import FeaturesCard from './FeaturesCard/FeaturesCard';
 const Features = () => {
     const [features, setFeatures] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/features')
+        fetch('https://specta-web.herokuapp.com/features')
             .then(res => res.json())
         .then(data => setFeatures(data))
     })

@@ -8,13 +8,13 @@ const OrderList = () => {
     const [loggedInUser,setLoggedInUser] = useContext(UserContext)
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/ordersByEmail?email=${loggedInUser.email}`)
+        fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${loggedInUser.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [update]);
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/deleteOrder/${id}`, {
+        fetch(`https://specta-web.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

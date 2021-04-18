@@ -7,7 +7,7 @@ import FooterCol from './FooterCol/FooterCol';
 const Footer = () => {
     const [footer, setFooter] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/footer')
+        fetch('https://specta-web.herokuapp.com/footer')
             .then(res => res.json())
         .then(data => setFooter(data))
     },[]);
