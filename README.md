@@ -1,13 +1,17 @@
 # SPECTA
+## A Internet Service Provider Website
 
-### A Internet Service Provider Website
 
-Repository Link:
+# Server Repository:
+https://github.com/Porgramming-Hero-web-course/complete-website-server-albiummid
+
+## Client Repository Link:
 https://github.com/Porgramming-Hero-web-course/complete-website-client-albiummid
 
-Live Site Link: https://specta-web.web.app/
+## Live Site Link:
+ https://specta-web.web.app/
 
-#About Website:
+### About Website:
 1.Fully responsive website without using any css Library.
 
 2.Animated feel everywhere.
