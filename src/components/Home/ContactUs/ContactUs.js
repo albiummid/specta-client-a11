@@ -17,7 +17,9 @@ const ContactUs = () => {
                     <input type="text" defaultValue={loggedInUser.name} placeholder="Your Name" required />
                     <input type="email" defaultValue={loggedInUser.email} placeholder="Your email" required />
                     <textarea type="message" placeholder="Your Message" required />
+                    <button className="brand-btn"> Submit </button>
                 </form>
+               
             </div>
 
         </section>
