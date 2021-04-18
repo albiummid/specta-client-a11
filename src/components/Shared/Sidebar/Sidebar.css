@@ -22,8 +22,6 @@
     color: white;
 }
 .bar{
-    border: 3px solid red;
-
     text-align: center;
     display: flex;
     flex-direction: column;

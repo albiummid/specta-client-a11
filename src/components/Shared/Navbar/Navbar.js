@@ -44,7 +44,7 @@ const Navbar = () => {
                         <a onClick={()=>setActive("services")}  className={active === "services" ? "nav-link active" :"nav-link"} href="#services"> Services </a>
                     </li>
                     <li className="nav-item">
-                        <Link onClick={()=>setActive("about")}  className={active === "about" ? "nav-link active" :"nav-link"} to="/about"> About Us </Link>
+                        <a onClick={()=>setActive("about")}  className={active === "about" ? "nav-link active" :"nav-link"} href="#about"> About Us </a>
                     </li>
 
                     <li className="nav-item">
