@@ -29,13 +29,13 @@ const Login = () => {
     const [newUser, setNewUser] = useState(false);
 
     const handleGetToken = () => {
-        firebase.auth().currentUser.getIdToken( true)
+        firebase.auth().currentUser.getIdToken(true)
             .then(function (idToken) {
                 localStorage.setItem('loginToken', idToken);
                 sessionStorage.setItem('loginToken', idToken);
-          }).catch(function(error) {
-            // Handle error
-          });
+            }).catch(function (error) {
+                // Handle error
+            });
     }
 
     const handleGoogleSignIn = () => {
@@ -49,9 +49,9 @@ const Login = () => {
                 setLoggedInUser(user);
                 handleGetToken();
                 history.push(from);
-                
-              
-              
+
+
+
             }).catch((error) => {
                 const newUserInfo = {}
                 newUserInfo.error = error.message;
@@ -60,12 +60,8 @@ const Login = () => {
 
     }
 
-    if (user.email && user.password) {
-        console.log(user);
-    }
 
-
-// Handaling Value change of Input fields
+    // Handaling Value change of Input fields
     const handleChange = (event) => {
         let isFieldValid = true;
         let isPasswordMatched = false;
@@ -104,10 +100,10 @@ const Login = () => {
     // Submiting the input value to the server.
     const handleSubmit = (event) => {
         if (newUser && user.email && user.password && user.name) {
-          
+
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            
-                .then(res => { 
+
+                .then(res => {
                     const { email, displayName } = res.user;
                     const newUserInfo = { email, name: displayName };
                     newUserInfo.name = user.name;
@@ -123,7 +119,7 @@ const Login = () => {
                     newUserInfo.error = error.message;
                     setLoggedInUser(newUserInfo);
                     alert(`${error.message}`)
-                    
+
                 });
         }
         if (!newUser && user.email && user.password) {
@@ -155,7 +151,6 @@ const Login = () => {
             displayName: name
         }).then(function () {
         }).catch(function (error) {
-            console.log("error occured",error);
         });
     }
 
@@ -191,13 +186,13 @@ const Login = () => {
                         }
                         <div className="input-group">
                             <span>
-                            <i class="fas fa-envelope" ></i>
+                                <i class="fas fa-envelope" ></i>
                             </span>
                             <input onChange={handleChange} type="email" name="email" placeholder="Email" required />
                         </div>
                         <div className="input-group">
                             <span >
-                            <i class="fas fa-lock"></i>
+                                <i class="fas fa-lock"></i>
                             </span>
                             <input onChange={handleChange} type="password" name="password" placeholder="Password" minLength="6" required />
                         </div>
@@ -205,7 +200,7 @@ const Login = () => {
                             newUser &&
                             <div className="input-group">
                                 <span >
-                                <i class="fas fa-lock"></i>
+                                    <i class="fas fa-lock"></i>
                                 </span>
                                 <input onChange={handleChange} type="password" name="confirmPassword" placeholder="Confirm Password" minLength="6" required />
                                 {
@@ -215,7 +210,7 @@ const Login = () => {
                         }
                         <input type="checkbox" name="remember-me" id="checkbox" />  <label htmlFor="remember-me">Remember me</label>
                         <p style={{ color: "red" }}>{loggedInUser.error}</p>
-                        
+
                         {
                             !newUser && <input className="btn" type="submit" value="Sign In" />
                         }
@@ -230,8 +225,8 @@ const Login = () => {
                         !newUser &&
                         <div className="social-links" onClick={handleGoogleSignIn}>
                             <span>Login with Google</span>    <button > <i class="fab fa-google"></i></button>
-                            
-                           
+
+
                         </div>
                     }
                 </form>

@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './ManageOrder.css'
 import TableRow from "./TableRow/TableRow";
+import loader from '../../../images/infinity_loop_-_logo.gif'
 const ManageOrder = () => {
-    const [update,setUpdate] = useState(false)
+    const [update, setUpdate] = useState(false)
     const [allOrders, setAllOrders] = useState([]);
-    console.log(allOrders);
     useEffect(() => {
         fetch('https://specta-web.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [update]);
-    console.log(allOrders);
     const handleDelete = (id) => {
         fetch(`https://specta-web.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE"
@@ -21,15 +20,15 @@ const ManageOrder = () => {
                 if (data) {
                     alert("Order Cancelled Successfully ! ");
                     setUpdate(!update);
-            }
-        })
+                }
+            })
     }
     const handleUpdate = (updatedData) => {
         const { id, value } = updatedData;
         fetch(`https://specta-web.herokuapp.com/updateOrder/${id}`, {
             method: "PATCH",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({status:value})
+            body: JSON.stringify({ status: value })
         })
             .then(res => res.json())
             .then(data => {
@@ -39,7 +38,7 @@ const ManageOrder = () => {
 
                 }
             })
-      
+
     }
 
     return (
@@ -49,22 +48,27 @@ const ManageOrder = () => {
                 <div className="section-header">
                     <h1>Manage Order</h1>
                 </div>
-              
+
+                {allOrders.length === 0 ?
+                    <img style={{width:"90%",margin:"0 auto"}} src={loader} alt=""/> :
                     <table className="table-container">
-                        <thead>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Service</th>
-                            <th> Status </th>
-                            <th> Action</th>
-                        </thead>
-                        <tbody>
-                            {
-                                allOrders.map((data, index) => <TableRow key={index + 1} name={data.orderInfo.name} email={data.email} service={data.serviceInfo.title} status={data.status} handleDelete={handleDelete} id={data._id } handleUpdate={handleUpdate} ></TableRow>)
-                            }
-                        </tbody>
-                    </table>
-          
+                    <thead>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th> Status </th>
+                        <th> Action</th>
+                    </thead>
+                    <tbody>
+                        {
+                            allOrders.map((data) => <TableRow data={data} handleDelete={handleDelete} handleUpdate={handleUpdate} ></TableRow>)
+                        }
+                    </tbody>
+                </table>
+
+                }
+
+
             </div>
         </section>
     );

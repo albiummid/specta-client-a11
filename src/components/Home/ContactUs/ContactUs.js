@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import './ContactUs.css'
 import contactImg from '../../../images/contact.jpg'
-import { useState } from 'react/cjs/react.development';
 import { UserContext } from '../../../App';
 const ContactUs = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);

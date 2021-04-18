@@ -29,7 +29,6 @@ const AddFeature = () => {
         const newFile = e.target.files[0];
         setFile(newFile);
     }
- console.log(file);
     return (
       <div className="dashboard-container">
         <Sidebar />

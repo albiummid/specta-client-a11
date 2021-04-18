@@ -6,10 +6,9 @@ const Testimonial = () => {
     useEffect(() => {
         fetch('https://specta-web.herokuapp.com/reviews')
             .then(res => res.json())
-        .then(data => setReviewData(data))
-        
-    },[])
-    console.log(reviewData);
+            .then(data => setReviewData(data))
+
+    }, [])
     return (
         <section id="testimonial" >
             <div className="section-header">
@@ -18,7 +17,7 @@ const Testimonial = () => {
             </div>
             <div className="std-card-container">
                 {
-                    reviewData.map(data => <TestimonialCard data={data} /> )
+                    reviewData.map(data => <TestimonialCard data={data} />)
                 }
             </div>
         </section>

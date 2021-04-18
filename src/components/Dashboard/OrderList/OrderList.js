@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../App';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
+import loader from '../../../images/infinity_loop_-_logo.gif'
 import './OrderList.css'
 import OrderListCard from './OrderListCard/OrderListCard';
 const OrderList = () => {
     const [update, setUpdate] = useState(false);
-    const [loggedInUser,setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const [orders, setOrders] = useState([]);
     useEffect(() => {
         fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${loggedInUser.email}`)
@@ -13,7 +14,6 @@ const OrderList = () => {
             .then(data => setOrders(data))
     }, [update]);
     const handleDelete = (id) => {
-        console.log(id);
         fetch(`https://specta-web.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE"
         })
@@ -22,24 +22,30 @@ const OrderList = () => {
                 if (data) {
                     alert("Order Cancelled Successfully ! ");
                     setUpdate(!update);
-            }
-        })
+                }
+            })
     }
 
 
     return (
         <div className="dashboard-container">
-                 <Sidebar />
+            <Sidebar />
             <div className="dashboard-area">
                 <div className="section-header">
-                <h1>Order list</h1> 
+                    <h1>Order list</h1>
                 </div>
-                <div className="mini-card-container">
+                {orders.length === 0 ?
+                    <img style={{ width: "90%", margin: "0 auto" }} src={loader} alt="" />
+                    :
+                    <div className="mini-card-container">
                     {
                         orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id} status={order.status} />)
                     }
                 </div>
-           </div>
+
+                }
+              
+            </div>
         </div>
     );
 };

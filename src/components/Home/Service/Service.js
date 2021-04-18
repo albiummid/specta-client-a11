@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Service.css'
 import PricingCard from './PricingCard/PricingCard';
+import loader from '../../../images/infinity_loop_-_logo.gif'
 import { useHistory } from 'react-router';
 
 const Service = () => {
@@ -14,7 +15,7 @@ const Service = () => {
     const handleClick = (id) => {
         const url = `/dashboard/order/${id}`;
         history.push(url);
-        
+
     }
     return (
         <section id="services">
@@ -26,12 +27,18 @@ const Service = () => {
                     Our Packages are true mone saver . Just Choose your own desire !
                 </p>
             </div>
-            <div className="std-card-container">
-                {
-                    serviceData.map(data => <PricingCard  data={data} handleClick={handleClick} />)
-                }
-             </div>
-            
+            {
+                serviceData.length === 0 ?
+                    <img style={{ width: "90%", margin: "0 auto" }} src={loader} alt="" />
+                    :
+                    <div className="std-card-container">
+                        {
+                            serviceData.map(data => <PricingCard data={data} handleClick={handleClick} />)
+                        }
+                    </div>
+            }
+
+
         </section>
     );
 };

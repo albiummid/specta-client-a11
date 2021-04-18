@@ -1,19 +1,20 @@
 import React from 'react';
 import './TableRow.css';
 import xIcon from '../../../../images/icons/x-button.png'
-const TableRow = ({ name, email, service, status, handleDelete, id, handleUpdate }) => {
+const TableRow = ({ data, handleDelete, handleUpdate }) => {
+    const { serviceInfo,orderInfo, email, _id ,status } = data;
     const handleChange = (e) => {
         const inputInfo = {
-            id: id,
+            id: _id,
             value:e.target.value
         }
         handleUpdate(inputInfo);
     }
     return (
         <tr >
-         <td>{ name }</td>   
+         <td>{ orderInfo.name }</td>   
          <td>{ email }</td>   
-         <td>{ service}</td>   
+         <td>{ serviceInfo.title}</td>   
             <td>
                 <select onChange={handleChange} >
                     <option value={status}>{status}</option>
@@ -35,7 +36,7 @@ const TableRow = ({ name, email, service, status, handleDelete, id, handleUpdate
                     
                 </select>
             </td>
-            <td><button className="delete-btn" onClick={()=>handleDelete(id)} ><img src={xIcon} alt=""/></button></td>   
+            <td><button className="delete-btn" onClick={()=>handleDelete(_id)} ><img src={xIcon} alt=""/></button></td>   
         </tr>
     );
 };

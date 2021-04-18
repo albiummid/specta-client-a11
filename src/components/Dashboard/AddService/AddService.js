@@ -6,7 +6,6 @@ const AddService = () => {
     const [file, setFile] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
         const formData = new FormData()
         formData.append('file', file);
         formData.append('title', data.title);
@@ -41,7 +40,7 @@ const AddService = () => {
             <Sidebar />
             <div className="dashboard-area">
                 <div className="section-header">
-                <h1>Add a service</h1>
+                    <h1>Add a service</h1>
                 </div>
                 <div className="form-container">
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,39 +53,39 @@ const AddService = () => {
                         <input type="text" name="subType" required placeholder="Subscription Type" ref={register} />
 
                         <div className="select-container">
-                        <div className="select-div">
-                            <legend>Real Ip</legend>
-                            <select type="text" name="realIp" required placeholder="realIp" ref={register} >
-                                <option value="Yes"> Yes </option>
-                                <option value="No"> No </option>
-                            </select>
-                        </div>
+                            <div className="select-div">
+                                <legend>Real Ip</legend>
+                                <select type="text" name="realIp" required placeholder="realIp" ref={register} >
+                                    <option value="Yes"> Yes </option>
+                                    <option value="No"> No </option>
+                                </select>
+                            </div>
 
-                        <div className="select-div">
-                            <legend>Optic Fiber</legend>
-                            <select type="text" name="opticFiber" required placeholder="opticFiber" ref={register} >
-                                <option value="Yes"> Yes </option>
-                                <option value="No"> No </option>
-                            </select>
-                        </div>
+                            <div className="select-div">
+                                <legend>Optic Fiber</legend>
+                                <select type="text" name="opticFiber" required placeholder="opticFiber" ref={register} >
+                                    <option value="Yes"> Yes </option>
+                                    <option value="No"> No </option>
+                                </select>
+                            </div>
 
-                        <div className="select-div">
-                            <legend>bdix:</legend>
-                            <select type="text" name="bdix" required placeholder="bdix" ref={register} >
-                                <option value="Yes"> Yes </option>
-                                <option value="No"> No </option>
-                            </select>
-                        </div>
+                            <div className="select-div">
+                                <legend>bdix:</legend>
+                                <select type="text" name="bdix" required placeholder="bdix" ref={register} >
+                                    <option value="Yes"> Yes </option>
+                                    <option value="No"> No </option>
+                                </select>
+                            </div>
 
-                    
-                        <div className="select-div">
-                        <legend>ROuter</legend>
-                        <select type="text" name="router" required placeholder="router" ref={register} >
-                            <option value="Yes"> Yes </option>
-                            <option value="No"> No </option>
-                        </select>
+
+                            <div className="select-div">
+                                <legend>ROuter</legend>
+                                <select type="text" name="router" required placeholder="router" ref={register} >
+                                    <option value="Yes"> Yes </option>
+                                    <option value="No"> No </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
                         <input onChange={handleFileChange} type="file" />
 

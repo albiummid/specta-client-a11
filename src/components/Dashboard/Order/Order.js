@@ -7,17 +7,16 @@ import ProcessPayment from './ProcessPayment/ProcessPayment';
 
 const Order = () => {
     const [orderInfo, setOrderInfo] = useState(null);
-    console.log(orderInfo);
     const { id } = useParams();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [service, setService] = useState({});
     useEffect(() => {
         if (id) {
             fetch(`https://specta-web.herokuapp.com/serviceById/${id}`)
-            .then(res => res.json())
-            .then(data => setService(data));
+                .then(res => res.json())
+                .then(data => setService(data));
         }
-       
+
     }, []);
 
 
@@ -30,24 +29,23 @@ const Order = () => {
                 paymentId, status: "Pending",
                 email: loggedInUser.email,
             };
-            
-            
-            console.log(orderDetails);
+
+
             fetch('https://specta-web.herokuapp.com/addOrder', {
                 method: 'POST',
                 headers: {
-                    "content-type":"application/json"
+                    "content-type": "application/json"
                 },
-                
-              body: JSON.stringify(orderDetails)
+
+                body: JSON.stringify(orderDetails)
             })
-            .then(response => response.json())
-            .then(success => {
-                if (success) {
-                    alert("order Successfully Completed")
-                    // modal
+                .then(response => response.json())
+                .then(success => {
+                    if (success) {
+                        alert("order Successfully Completed")
+                        // modal
                     }
-            })
+                })
         }
         else {
             alert('Please Complete Your Information')
@@ -55,44 +53,44 @@ const Order = () => {
     }
 
     const handleChange = (e) => {
-        const order = {...orderInfo};
+        const order = { ...orderInfo };
         order[e.target.name] = e.target.value;
         setOrderInfo(order);
     }
     return (
         <section className="dashboard-container">
-            <Sidebar/>
-            
+            <Sidebar />
+
             {
                 id ?
-                <div className="dashboard-area">
+                    <div className="dashboard-area">
                         <div className="section-header">
                             <h1>Place Order</h1>
-                </div>
-            <div className="section-header">
-                <h2>Package: { service.title }</h2>
-                <spna>{service.price} ৳ /</spna><span>month</span>
-            </div>
-                <div className="form-container">
-                    <form >
-                       
-                        <input onChange={handleChange} type="text" name="name" required placeholder="Your Name"  />
-                        <input onChange={handleChange} type="text" name="email" required placeholder="Your Email"  />
-                        <input onChange={handleChange} type="text" name="phone" required placeholder="Your Phone"  />
-                        <input onChange={handleChange} type="text" name="address" required placeholder="Your Address"  /><br />
-                        
-                
-                    </form>
-                    <div className="payment">
-                    <ProcessPayment handlePaymentSuccess={ handlePaymentSuccess}/>
-                    </div>
+                        </div>
+                        <div className="section-header">
+                            <h2>Package: {service.title}</h2>
+                            <spna>{service.price} ৳ /</spna><span>month</span>
+                        </div>
+                        <div className="form-container">
+                            <form >
 
-            </div>
-            </div>
+                                <input onChange={handleChange} type="text" name="name" required placeholder="Your Name" />
+                                <input onChange={handleChange} type="text" name="email" required placeholder="Your Email" />
+                                <input onChange={handleChange} type="text" name="phone" required placeholder="Your Phone" />
+                                <input onChange={handleChange} type="text" name="address" required placeholder="Your Address" /><br />
+
+
+                            </form>
+                            <div className="payment">
+                                <ProcessPayment handlePaymentSuccess={handlePaymentSuccess} />
+                            </div>
+
+                        </div>
+                    </div>
                     :
                     <div className="dashboard-area">
                         <div className="section-header">
-                        <h1>Please Select a service Package</h1></div>
+                            <h1>Please Select a service Package</h1></div>
                     </div>
             }
         </section>
