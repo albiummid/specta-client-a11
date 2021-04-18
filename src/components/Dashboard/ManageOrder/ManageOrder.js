@@ -5,6 +5,7 @@ import TableRow from "./TableRow/TableRow";
 const ManageOrder = () => {
     const [update,setUpdate] = useState(false)
     const [allOrders, setAllOrders] = useState([]);
+    console.log(allOrders);
     useEffect(() => {
         fetch('https://specta-web.herokuapp.com/allOrders')
             .then(res => res.json())

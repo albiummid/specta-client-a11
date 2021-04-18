@@ -18,7 +18,7 @@
 .contact-container form{
     width: 100%;
 }
-.contact-container input + textarea{
+.contact-container input , .contact-container textarea{
 width: 100%;
 }
 .contact-container textarea{

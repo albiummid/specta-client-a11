@@ -90,7 +90,10 @@ const Order = () => {
             </div>
             </div>
                     :
-                <div className="section-header"><h1>Please Select a service Package</h1></div>
+                    <div className="dashboard-area">
+                        <div className="section-header">
+                        <h1>Please Select a service Package</h1></div>
+                    </div>
             }
         </section>
     );

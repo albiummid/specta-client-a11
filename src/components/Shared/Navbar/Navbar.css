@@ -137,6 +137,7 @@ transition: all 0.2s ease-in;
       
       }
       .navbar {
+        width: 100%;
         color: black;
         height:80px;
          }

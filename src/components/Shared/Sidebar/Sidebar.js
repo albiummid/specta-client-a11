@@ -44,31 +44,34 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
 
-                { isAdmin  &&
-                    <div>
+                {isAdmin &&
                     <li className=" bar-item">
-                      <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
-                          Manage Order
+                        <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
+                            Manage Order
                       </NavLink>
-                  </li>
-                  <li className=" bar-item">
+                    </li>
+                }
+                {isAdmin &&
+                    <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-feature">
                           Add Feature
                       </NavLink>
-                  </li>
-                  <li className=" bar-item">
+                    </li>}
+                
+                {isAdmin &&
+                    <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-service">
                           Add Service
                       </NavLink>
                   </li>
-                 
-                  <li className=" bar-item">
+                 }
+                {isAdmin &&
+                    <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-admin">
                          Add Admin
                       </NavLink>
-                  </li>
-                      </div>
-              }
+                  </li>}
+                    
             </ul>
         </div>
     );
