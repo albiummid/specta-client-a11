@@ -3,11 +3,26 @@
     margin: 20px auto;
     transition: all .4s ease-in-out;
     
+    
 }
 .pricing-card img:hover{
     cursor: pointer;
-  transform: scale(1.2);
-
+  animation: bounce .8s linear;
+}
+@keyframes bounce {
+  
+    20%,50%,80%,to{
+        transform:translateY(0)
+    }
+    40%{
+        transform: translateY(-30px);
+    }
+    70%{
+        transform: translateY(-15px);
+    }
+    90%{
+        transform: translateY(-5px);
+    }
 }
 .check{
     width: 10px;

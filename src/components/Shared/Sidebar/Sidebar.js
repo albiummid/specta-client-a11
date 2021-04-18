@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AiOutlineAppstoreAdd } from 'react-icons/ai'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { BiMessageAltAdd } from 'react-icons/bi'
 import {  NavLink } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import './Sidebar.css'
@@ -30,45 +33,46 @@ const Sidebar = () => {
 
             <li className=" bar-item">
                     <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/order">
-                        Order
+                    <i class="fas fa-shopping-cart"></i> Order
                     </NavLink>
                 </li>
                 <li className=" bar-item">
-                      <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-review">
-                          Review
+                    <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-review">
+                        
+                    <i class="fas fa-comments"></i> Review
                       </NavLink>
                   </li>
                 <li className=" bar-item">
                     <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/order-list">
-                        Order List
+                    <i class="far fa-list-alt"></i> Order List
                     </NavLink>
                 </li>
 
                 {isAdmin &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
-                            Manage Order
+                        <i class="fas fa-tasks"></i> Manage Order
                       </NavLink>
                     </li>
                 }
                 {isAdmin &&
                     <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-feature">
-                          Add Feature
+                      <i class="fas fa-puzzle-piece"></i> Add Feature
                       </NavLink>
                     </li>}
                 
                 {isAdmin &&
                     <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-service">
-                          Add Service
+                      <i class="fab fa-servicestack"></i>  Add Service
                       </NavLink>
                   </li>
                  }
                 {isAdmin &&
                     <li className=" bar-item">
                       <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-admin">
-                         Add Admin
+                      <i class="fas fa-user-plus"></i> Add Admin
                       </NavLink>
                   </li>}
                     

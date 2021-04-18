@@ -13,7 +13,10 @@
 
 }
 .bar-link{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .85rem;
     width: 350px;
     padding: 20px;
 }
@@ -34,7 +37,7 @@
     .bar{
         display:grid;
         justify-content: center;
-        grid-template-columns: repeat(3,100px);
+        grid-template-columns: repeat(3,120px);
         grid-auto-rows: 1fr afr;
       
     }
