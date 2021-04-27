@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import { UserContext } from '../../../App';
 const AddReview = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+ const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     const [file, setFile] = useState(null);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = data => {
   const formData = new FormData()
         formData.append('file', file);

@@ -1,4 +1,5 @@
 .main{
+    width: 100%;
     padding: 50px;
     display: grid;
     grid-template-columns:repeat(auto-fit,minmax(400px ,1fr)) ;
@@ -28,6 +29,7 @@ transform: translateX(0)
 }
 .top-banner img:hover{
     cursor: pointer;
+    margin: 0 auto;
     width: 90%;
     transform:  translateY(-5%) translateX(5%) ;
     

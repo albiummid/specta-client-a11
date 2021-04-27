@@ -17,7 +17,7 @@ const Testimonial = () => {
             </div>
             <div className="std-card-container">
                 {
-                    reviewData.map(data => <TestimonialCard data={data} />)
+                    reviewData.map(data => <TestimonialCard key={data._id} data={data} />)
                 }
             </div>
         </section>

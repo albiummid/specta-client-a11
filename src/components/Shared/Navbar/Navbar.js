@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { SiElectron } from 'react-icons/si';
 import './Navbar.css'
+import firebase from "firebase/app";
 import { UserContext } from '../../../App';
 const Navbar = () => {
+    const [userData, setUserData] = useContext(UserContext);
     const history = useHistory();
-    // const token = sessionStorage.getItem('loginToken');
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [active,setActive] = useState()
     const [click, setClick] = useState(false);
     const handleClick = () => {
@@ -16,8 +16,8 @@ const Navbar = () => {
         setClick(false);
     }
     const handleSignOut = () => {
-        setLoggedInUser({});
-        sessionStorage.removeItem('loginToken');
+        sessionStorage.removeItem('user');
+        firebase.auth().signOut();
     }
     const handleSignIn = () => {
             history.push('/login')
@@ -49,7 +49,7 @@ const Navbar = () => {
 
                     <li className="nav-item">
                         {
-                            loggedInUser.email  ? <Link onClick={handleSignOut} className="nav-link-mobile">Sign Out</Link>
+                            userData?.email  ? <Link onClick={handleSignOut} className="nav-link-mobile">Sign Out</Link>
                                 :
                                 <Link to="/login"  className="nav-link-mobile">Sign In</Link>
                     }
@@ -57,7 +57,7 @@ const Navbar = () => {
                     
                     <li className="nav-item">
                         {
-                            loggedInUser.email  ?
+                            userData?.email?
                                 <button onClick={handleSignOut} className="nav-btn">Sign Out</button>
                                 :
                                 <button onClick={handleSignIn} className="nav-btn">Sign In</button>

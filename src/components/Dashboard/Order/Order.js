@@ -8,7 +8,7 @@ import ProcessPayment from './ProcessPayment/ProcessPayment';
 const Order = () => {
     const [orderInfo, setOrderInfo] = useState(null);
     const { id } = useParams();
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     const [service, setService] = useState({});
     useEffect(() => {
         if (id) {

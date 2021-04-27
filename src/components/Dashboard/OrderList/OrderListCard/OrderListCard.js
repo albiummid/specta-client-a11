@@ -1,6 +1,6 @@
 import React from 'react';
 import './OrderListCard.css'
-const OrderListCard = ({ data,status,handleDelete,id }) => {
+const OrderListCard = ({ data, status, handleDelete, id,serial}) => {
     const { title, price, subType, speed, realIp, opticFiber, router } = data;
     return (
         <div className="order-list-card">

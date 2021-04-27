@@ -17,7 +17,7 @@ const Features = () => {
             </div>
             <div className="mini-card-container">
                 {
-                    features.map(feature => <FeaturesCard feature={feature}/>)
+                    features.map(feature => <FeaturesCard feature={feature} key={feature._id} />)
                 }
             </div>
         </section>

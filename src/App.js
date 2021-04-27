@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import { FormProvider } from 'react-hook-form';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
@@ -13,13 +14,22 @@ import Login from './components/Login/Login';
 import NotMatched from './components/NotMatched/NotMatched';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Footer from './components/Shared/Footer/Footer';
-import Navbar from './components/Shared/Navbar/Navbar';
-export const UserContext = createContext();
+import Navbar from './components/Shared/Navbar/Navbar'; export const UserContext = createContext();
+
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
-  return (
-    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <Router>
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem('user'));
+    if (data) {
+      setUserData(data);
+    }
+    else {
+      setUserData({});
+    }
+  })
+    return (
+      <UserContext.Provider value={[userData, setUserData]} >
+          <Router>
         <Navbar />
         <Switch>
           <PrivateRoute path="/dashboard/order-list">
@@ -61,8 +71,8 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-    </UserContext.Provider>
-  );
+      </UserContext.Provider>
+    )
 }
 
 export default App;

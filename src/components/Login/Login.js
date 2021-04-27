@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import firebaseConfig from './firebase.config';
 import signIn from "../../images/signIn.jpg";
 import signUp from "../../images/signUp.jpg";
 import "firebase/auth";
 import "./Login.css";
 import firebase from "firebase/app";
-import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import { UserContext } from '../../App';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
@@ -14,12 +14,12 @@ if (!firebase.apps.length) {
 }
 
 
-
 const Login = () => {
+    const [userData, setUserData] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+   
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -31,31 +31,30 @@ const Login = () => {
     const handleGetToken = () => {
         firebase.auth().currentUser.getIdToken(true)
             .then(function (idToken) {
-                localStorage.setItem('loginToken', idToken);
-                sessionStorage.setItem('loginToken', idToken);
             }).catch(function (error) {
                 // Handle error
             });
     }
+
 
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth()
             .signInWithPopup(provider)
             .then((result) => {
-                handleGetToken();
-                const { email, displayName } = result.user;
-                const user = { email, name: displayName };
-                setLoggedInUser(user);
+                const idToken = result.credential.idToken;
+                const { email, displayName,img: photoURL } = result.user;
+                const user = { email, name: displayName, img: photoURL };
+                sessionStorage.setItem('user', JSON.stringify(user));
+                setUserData(user);
                 handleGetToken();
                 history.push(from);
-
-
 
             }).catch((error) => {
                 const newUserInfo = {}
                 newUserInfo.error = error.message;
-                setLoggedInUser(newUserInfo);
+                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+
             });
 
     }
@@ -108,7 +107,7 @@ const Login = () => {
                     const newUserInfo = { email, name: displayName };
                     newUserInfo.name = user.name;
                     newUserInfo.error = '';
-                    setLoggedInUser(newUserInfo);
+                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     alert('SignUp successfully completed 😍')
                     updateUserName(user.name);
                     history.push(from);
@@ -117,7 +116,7 @@ const Login = () => {
                 .catch((error) => {
                     const newUserInfo = {};
                     newUserInfo.error = error.message;
-                    setLoggedInUser(newUserInfo);
+                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     alert(`${error.message}`)
 
                 });
@@ -127,9 +126,9 @@ const Login = () => {
                 .then(res => {
 
                     const { email, displayName } = res.user;
-                    const newUserInfo = { email, name: displayName }
+                    const newUserInfo = { email, name: displayName };
+                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     newUserInfo.error = '';
-                    setLoggedInUser(newUserInfo);
                     alert("login successful 😍")
                     history.replace(from)
 
@@ -137,7 +136,7 @@ const Login = () => {
                 .catch((error) => {
                     const newUserInfo = {};
                     newUserInfo.error = error.message;
-                    setLoggedInUser(newUserInfo);
+                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     alert(`${error.message}`)
                 });
         }
@@ -209,7 +208,7 @@ const Login = () => {
                             </div>
                         }
                         <input type="checkbox" name="remember-me" id="checkbox" />  <label htmlFor="remember-me">Remember me</label>
-                        <p style={{ color: "red" }}>{loggedInUser.error}</p>
+                        <p style={{ color: "red" }}>{user?.error}</p>
 
                         {
                             !newUser && <input className="btn" type="submit" value="Sign In" />

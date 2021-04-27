@@ -61,7 +61,7 @@ const ManageOrder = () => {
                     </thead>
                     <tbody>
                         {
-                            allOrders.map((data) => <TableRow data={data} handleDelete={handleDelete} handleUpdate={handleUpdate} ></TableRow>)
+                            allOrders.map((data) => <TableRow serial={allOrders.length} data={data} handleDelete={handleDelete} handleUpdate={handleUpdate} ></TableRow>)
                         }
                     </tbody>
                 </table>

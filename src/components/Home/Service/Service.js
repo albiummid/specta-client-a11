@@ -33,7 +33,7 @@ const Service = () => {
                     :
                     <div className="std-card-container">
                         {
-                            serviceData.map(data => <PricingCard data={data} handleClick={handleClick} />)
+                            serviceData.map(data => <PricingCard key={data._id} data={data} handleClick={handleClick} />)
                         }
                     </div>
             }

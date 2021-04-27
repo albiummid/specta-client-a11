@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
             <div className="link-div">
                 {
-                    footer.map(data=><FooterCol data={data} />)
+                    footer.map(data=><FooterCol key={data._id} data={data} />)
                 }
             </div>
             <p className="footer-end">Copyright @

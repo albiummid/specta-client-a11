@@ -6,10 +6,10 @@ import './OrderList.css'
 import OrderListCard from './OrderListCard/OrderListCard';
 const OrderList = () => {
     const [update, setUpdate] = useState(false);
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const user = JSON.parse(sessionStorage.getItem('user'));
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${loggedInUser.email}`)
+        fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${user.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [update]);
@@ -26,7 +26,6 @@ const OrderList = () => {
             })
     }
 
-
     return (
         <div className="dashboard-container">
             <Sidebar />
@@ -39,7 +38,7 @@ const OrderList = () => {
                     :
                     <div className="mini-card-container">
                     {
-                        orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id} status={order.status} />)
+                        orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id}  status={order.status} />)
                     }
                 </div>
 

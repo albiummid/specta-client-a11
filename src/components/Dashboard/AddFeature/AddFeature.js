@@ -4,7 +4,7 @@ import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './AddFeature.css'
 const AddFeature = () => {
     const [file, setFile] = useState(null);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = data => {
   const formData = new FormData()
         formData.append('file', file);

@@ -3,7 +3,7 @@ import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './AddAdmin.css'
 import { useForm } from "react-hook-form";
 const AddAdmin = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = data => {
   fetch('https://specta-web.herokuapp.com/addAdmin', {
       method: 'POST',
