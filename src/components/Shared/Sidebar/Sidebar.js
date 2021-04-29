@@ -28,47 +28,47 @@ const Sidebar = () => {
             <ul className="bar">
 
                 <li className=" bar-item">
-                    <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/order">
-                        <i className="fas fa-shopping-cart"></i> Order
+                    <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/order">
+                        <i class="fas fa-shopping-cart"></i> Order
                     </NavLink>
                 </li>
                 <li className=" bar-item">
-                    <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/add-review">
+                    <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-review">
 
-                        <i className="fas fa-comments"></i> Review
+                        <i class="fas fa-comments"></i> Review
                       </NavLink>
                 </li>
                 <li className=" bar-item">
-                    <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/order-list">
-                        <i className="far fa-list-alt"></i> Order List
+                    <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/order-list">
+                        <i class="far fa-list-alt"></i> Order List
                     </NavLink>
                 </li>
 
                 {isAdmin &&
                     <li className=" bar-item">
-                        <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/manage-order">
-                            <i className="fas fa-tasks"></i> Manage Order
+                        <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
+                            <i class="fas fa-tasks"></i> Manage Order
                       </NavLink>
                     </li>
                 }
                 {isAdmin &&
                     <li className=" bar-item">
-                        <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/add-feature">
-                            <i className="fas fa-puzzle-piece"></i> Add Feature
+                        <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-feature">
+                            <i class="fas fa-puzzle-piece"></i> Add Feature
                       </NavLink>
                     </li>}
 
                 {isAdmin &&
                     <li className=" bar-item">
-                        <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/add-service">
-                            <i className="fab fa-servicestack"></i>  Add Service
+                        <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-service">
+                            <i class="fab fa-servicestack"></i>  Add Service
                       </NavLink>
                     </li>
                 }
                 {isAdmin &&
                     <li className=" bar-item">
-                        <NavLink activeClassName="activeClassName-bar" className=" bar-link" to="/dashboard/add-admin">
-                            <i className="fas fa-user-plus"></i> Add Admin
+                        <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-admin">
+                            <i class="fas fa-user-plus"></i> Add Admin
                       </NavLink>
                     </li>}
 
