@@ -9,9 +9,13 @@ h1{
   color: #5AD5B1;
   font-size:clamp(1.5rem , 4vw, 3rem)
 }
+h2{
+  font-size:clamp(1.1rem , 2vw, 2rem)
+}
 .nav-link:active{
   color: red;
 }
-p{padding: auto;
+p{
+
   font-size: clamp(1rem,2vw,1rem);
 }

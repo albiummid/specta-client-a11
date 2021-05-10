@@ -1,9 +1,21 @@
 import React, { useContext } from 'react';
 import './ContactUs.css'
 import contactImg from '../../../images/contact.jpg'
-import { UserContext } from '../../../App';
+import emailjs from 'emailjs-com';
 const ContactUs = () => {
-   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+    const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+    function sendEmail(e) {
+        e.preventDefault();
+        console.log(e.target);
+    
+        emailjs.sendForm('service_vp1bxr9', 'template_al7ex9l', e.target, 'user_f4Q4w652L2ya4ymbYdO4H')
+            .then((result) => {
+                console.log(result);
+              alert("Your message submitted")
+          }, (error) => {
+              alert("Message sending failed!")
+          });
+      }
     return (
         <section id="contactUs">
             <div className="section-header">
@@ -13,11 +25,11 @@ const ContactUs = () => {
                 <div className="contact-img">
                     <img src={contactImg} alt="" />
                 </div>
-                <form action="">
-                    <input type="text" defaultValue={loggedInUser?.name} placeholder="Your Name" required />
-                    <input type="email" defaultValue={loggedInUser?.email} placeholder="Your email" required />
-                    <textarea type="message" placeholder="Your Message" required />
-                    <button className="brand-btn"> Submit </button>
+                <form onSubmit={sendEmail}>
+                    <input type="text" defaultValue={loggedInUser?.name} name="from_name" placeholder="Your Name" required />
+                    <input type="email" defaultValue={loggedInUser?.email} name="reply_to" placeholder="Your email" required />
+                    <textarea type="message" name="message" placeholder="Your Message" required />
+                    <button type="submit" className="brand-btn"> Submit </button>
                 </form>
                
             </div>

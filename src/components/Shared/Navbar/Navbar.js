@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { SiElectron } from 'react-icons/si';
 import './Navbar.css'
@@ -18,6 +18,7 @@ const Navbar = () => {
     const handleSignOut = () => {
         sessionStorage.removeItem('user');
         firebase.auth().signOut();
+        window.location.reload();
     }
     const handleSignIn = () => {
             history.push('/login')
@@ -47,6 +48,14 @@ const Navbar = () => {
                         <a onClick={()=>setActive("about")}  className={active === "about" ? "nav-link active" :"nav-link"} href="#about"> About Us </a>
                     </li>
 
+                    <li className="nav-item">
+                        {
+                            userData?.name && <p className="nav-link user-name">
+                                {userData.name}
+                            </p>
+                               
+                    }
+                    </li>
                     <li className="nav-item">
                         {
                             userData?.email  ? <Link onClick={handleSignOut} className="nav-link-mobile">Sign Out</Link>

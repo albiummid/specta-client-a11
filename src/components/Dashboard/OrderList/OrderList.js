@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../../App';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import loader from '../../../images/infinity_loop_-_logo.gif'
 import './OrderList.css'
@@ -12,7 +11,7 @@ const OrderList = () => {
         fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${user.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, [update]);
+    }, [user.email]);
     const handleDelete = (id) => {
         fetch(`https://specta-web.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE"

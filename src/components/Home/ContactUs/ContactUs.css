@@ -18,6 +18,7 @@
 .contact-container form{
     width: 100%;
 }
+
 .contact-container input , .contact-container textarea{
 width: 100%;
 }
@@ -26,4 +27,24 @@ width: 100%;
 }
 #contactUs{
     margin: 50px auto;
+}
+@media (max-width:900px){
+    /* .contact-img img{
+        width: 90%;
+        padding-bottom: 20px;
+    } */
+    .contact-img {
+        max-width: 70%;
+        margin-inline: auto;
+ 
+     }
+    .contact-container{
+        width: 90%;
+    }
+    .contact-container form{
+       max-width: 300px;
+    }
+    .contact-container input , .contact-container textarea{
+    width: 90%;
+    }
 }

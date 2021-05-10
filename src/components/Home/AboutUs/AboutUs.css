@@ -1,18 +1,29 @@
 .about-container{
 
-    display: grid;
+    /* display: grid; */
     margin: 10px 50px ;
     justify-content: center;
     align-items: center;
     grid-gap: 5rem;
-    grid-template-columns: repeat(auto-fit,minmax(350px,500px));
+    /* grid-template-columns: repeat(auto-fit,minmax(350px,500px)); */
     text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+.about-container > div{
+    max-width: 500px;
 }
 .about-img{
     width:100%;
 }
+.map-container{
+    width: 500px;
+}
 @media(max-width:768px){
     .about-container{
         margin: 3px;
+    }
+    .map-container{
+        width: 300px;
     }
 }

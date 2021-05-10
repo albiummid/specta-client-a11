@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../../App';
 import './Sidebar.css'
 const Sidebar = () => {
     const [isAdmin, setIsAdmin] = useState(false);

@@ -132,6 +132,7 @@ cursor: pointer;
     .img-div{
         border-top: 1px solid teal;
         padding-top: 30px;
+        height: 100%;
     }
     .input-div{
         padding-bottom: 30px;

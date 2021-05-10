@@ -1,18 +1,22 @@
 .main{
     width: 100%;
-    padding: 50px;
-    display: grid;
-    grid-template-columns:repeat(auto-fit,minmax(400px ,1fr)) ;
-    justify-content: center;
-    grid-gap: 10rem;
+    min-height: 100vh;
+    padding: 0  50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     background: url(../../../images/bg.jpg);
     background-size: cover;
 
 }
 .top-banner{
-    width: 100%;
+    display: flex;
+ 
+   align-items: center;
+  max-width: 800px;
 }
 .top-banner img{
+    margin: 50px auto;
     width: 90%;
     animation: imageAnimation 1s ;
     transition: transform ease-in-out .3s;
@@ -29,23 +33,25 @@ transform: translateX(0)
 }
 .top-banner img:hover{
     cursor: pointer;
-    margin: 0 auto;
+ 
     width: 90%;
     transform:  translateY(-5%) translateX(5%) ;
     
 
 }
 .intro{
+    margin-top: 100px;
+    max-width: 500px;
     color: #f2f2f2;
     padding-top: 50px;
-    max-width: 400px;
+
 }
 .intro h1{
     color: #5AD5B8;
 }
 .brand-btn{
     background:linear-gradient(90deg,#00A2C3,#00DCF5);
-    margin: 10px auto;
+    margin: 30px auto;
     color: white;
     width: 150px;
     height: 40px;
@@ -61,14 +67,10 @@ transform: translateX(0)
     cursor: pointer;
     opacity: 1;
     transform: translateY(-10px);
-    
-
 }
 .brand-btn:active{
   opacity: 0.7;
   transform: translateX(10px);
-    
-
 }
 
 

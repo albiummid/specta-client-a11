@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { FormProvider } from 'react-hook-form';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
@@ -26,7 +25,7 @@ function App() {
     else {
       setUserData({});
     }
-  })
+  },[])
     return (
       <UserContext.Provider value={[userData, setUserData]} >
           <Router>

@@ -1,9 +1,11 @@
 .std-card-container{
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit,350px);
     grid-gap: 3rem;
     grid-template-rows: 1fr;
-    margin: 50px auto;
-justify-content: center;
-
+    margin: 50px auto; */
+    justify-content: center;
+    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
 }

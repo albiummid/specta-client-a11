@@ -27,18 +27,12 @@ const Service = () => {
                     Our Packages are true mone saver . Just Choose your own desire !
                 </p>
             </div>
-            {
-                serviceData.length === 0 ?
-                    <img style={{ width: "90%", margin: "0 auto" }} src={loader} alt="" />
-                    :
+             
                     <div className="std-card-container">
                         {
                             serviceData.map(data => <PricingCard key={data._id} data={data} handleClick={handleClick} />)
                         }
                     </div>
-            }
-
-
         </section>
     );
 };

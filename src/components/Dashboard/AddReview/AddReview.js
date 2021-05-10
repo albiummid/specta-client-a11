@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import './AddReview.css'
 import { useForm } from "react-hook-form";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
-import { UserContext } from '../../../App';
 const AddReview = () => {
  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     const [file, setFile] = useState(null);

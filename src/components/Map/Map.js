@@ -4,8 +4,8 @@ import React from 'react';
 const Map = () => {
 
     const containerStyle = {
-        minWidth: '300px',
-        minHeight: '300px'
+        width: '100%',
+     height: '300px'
       };
       
       const center = {
@@ -14,7 +14,7 @@ const Map = () => {
       };
     const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCzmtWIB03D3VoZcdf_GprLDLsZLOCfYSQ"
+    googleMapsApiKey: "AIzaSyBgcL9WlQurkB-kRTgVhM62dKP7c8p1Hl4"
   })
 
   const [map, setMap] = React.useState(null)
@@ -33,7 +33,7 @@ const Map = () => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={50}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
