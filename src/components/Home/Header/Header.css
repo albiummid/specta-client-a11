@@ -33,9 +33,7 @@ transform: translateX(0)
 }
 .top-banner img:hover{
     cursor: pointer;
- 
-    width: 90%;
-    transform:  translateY(-5%) translateX(5%) ;
+    /* transform:  translateY(-5%) translateX(5%) ; */
     
 
 }

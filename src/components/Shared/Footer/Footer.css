@@ -16,12 +16,15 @@
     grid-template-columns: repeat(3,200px);
     grid-gap: 2rem;
 }
+.link-div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .footer-end{
     text-align: center;
     margin: 50px auto;
 }
 @media(max-width:768px){
-    .link-div{
-        grid-template-columns: 1fr ;
-    }
+  
 }

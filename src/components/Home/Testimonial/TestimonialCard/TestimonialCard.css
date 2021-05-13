@@ -1,5 +1,5 @@
 .testimonial-card{
-    max-width: 300px;
+    width: 300px;
     padding: 30px;
     border-radius: 10px;
     transition: all .4s ease;
