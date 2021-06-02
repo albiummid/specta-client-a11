@@ -1,5 +1,5 @@
 # SPECTA
-## A Internet Service Provider Website
+## An Internet Service Provider Website
 
 
 # Server Repository:
