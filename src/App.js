@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
 import AddFeature from './components/Dashboard/AddFeature/AddFeature';
@@ -25,10 +25,10 @@ function App() {
     else {
       setUserData({});
     }
-  },[])
-    return (
-      <UserContext.Provider value={[userData, setUserData]} >
-          <Router>
+  }, [])
+  return (
+    <UserContext.Provider value={[userData, setUserData]} >
+      <Router>
         <Navbar />
         <Switch>
           <PrivateRoute path="/dashboard/order-list">
@@ -59,7 +59,7 @@ function App() {
             <Login />
           </Route>
           <Route path="/home">
-            <Home />
+            <Redirect to='/' />
           </Route>
           <Route exact path="/">
             <Home />
@@ -70,8 +70,8 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-      </UserContext.Provider>
-    )
+    </UserContext.Provider>
+  )
 }
 
 export default App;
