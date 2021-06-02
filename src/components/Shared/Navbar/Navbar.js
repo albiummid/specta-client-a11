@@ -59,7 +59,7 @@ const Navbar = () => {
                     </li>
                     <li className="nav-item">
                         {
-                            userData?.email ? <NavLink onClick={handleSignOut} className="nav-link-mobile">Sign Out</NavLink>
+                            userData?.email ? <NavLink smooth to='/' onClick={handleSignOut} className="nav-link-mobile">Sign Out</NavLink>
                                 :
                                 <NavLink smooth to="/login" className="nav-link-mobile">Sign In</NavLink>
                         }

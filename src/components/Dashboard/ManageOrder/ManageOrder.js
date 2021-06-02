@@ -50,21 +50,21 @@ const ManageOrder = () => {
                 </div>
 
                 {allOrders.length === 0 ?
-                    <img style={{width:"90%",margin:"0 auto"}} src={loader} alt=""/> :
+                    <img style={{ width: "150px" }} src={loader} alt="" /> :
                     <table className="table-container">
-                    <thead>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Service</th>
-                        <th> Status </th>
-                        <th> Action</th>
-                    </thead>
-                    <tbody>
-                        {
-                            allOrders.map((data) => <TableRow serial={allOrders.length} data={data} handleDelete={handleDelete} handleUpdate={handleUpdate} ></TableRow>)
-                        }
-                    </tbody>
-                </table>
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Service</th>
+                            <th> Status </th>
+                            <th> Action</th>
+                        </thead>
+                        <tbody>
+                            {
+                                allOrders.map((data) => <TableRow serial={allOrders.length} data={data} handleDelete={handleDelete} handleUpdate={handleUpdate} ></TableRow>)
+                            }
+                        </tbody>
+                    </table>
 
                 }
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Service.css'
 import PricingCard from './PricingCard/PricingCard';
-import loader from '../../../images/infinity_loop_-_logo.gif'
 import { useHistory } from 'react-router';
 
 const Service = () => {
@@ -27,12 +26,12 @@ const Service = () => {
                     Our Packages are true mone saver . Just Choose your own desire !
                 </p>
             </div>
-             
-                    <div className="std-card-container">
-                        {
-                            serviceData.map(data => <PricingCard key={data._id} data={data} handleClick={handleClick} />)
-                        }
-                    </div>
+
+            <div className="std-card-container">
+                {
+                    serviceData.map(data => <PricingCard key={data._id} data={data} handleClick={handleClick} />)
+                }
+            </div>
         </section>
     );
 };

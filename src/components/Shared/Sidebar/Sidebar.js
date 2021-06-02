@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import './Sidebar.css'
 const Sidebar = () => {
-    const [isAdmin, setIsAdmin] = useState(false);
-   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
-
-    useEffect(() => {
-        fetch(`https://specta-web.herokuapp.com/isAdmin?email=${loggedInUser.email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data) {
-                    setIsAdmin(true);
-                }
-            });
-    }, []);
-
-
+    const [userData, setUserData] = useContext(UserContext);
+    const [isAdmin, setIsAdmin] = useState(userData.isAdmin);
 
 
 
@@ -43,14 +32,14 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
 
-                {isAdmin &&
+                {isAdmin === 'true' &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
                             <i class="fas fa-tasks"></i> Manage Order
                       </NavLink>
                     </li>
                 }
-                {isAdmin &&
+                {isAdmin === 'true' &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-feature">
                             <i class="fas fa-puzzle-piece"></i> Add Feature

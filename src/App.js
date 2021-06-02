@@ -20,12 +20,23 @@ function App() {
   useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem('user'));
     if (data) {
-      setUserData(data);
+      fetch(`https://specta-web.herokuapp.com/isAdmin?email=${data.email}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data) {
+            const newData = { ...userData }
+            newData.isAdmin = 'true';
+            setUserData(newData)
+          }
+        });
     }
     else {
       setUserData({});
     }
+
   }, [])
+  console.log(userData);
+
   return (
     <UserContext.Provider value={[userData, setUserData]} >
       <Router>

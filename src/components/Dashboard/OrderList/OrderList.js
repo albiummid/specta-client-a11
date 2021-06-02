@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
-import loader from '../../../images/infinity_loop_-_logo.gif'
+import loader from '../../../images/loadingAnimation.gif'
 import './OrderList.css'
 import OrderListCard from './OrderListCard/OrderListCard';
 const OrderList = () => {
@@ -33,16 +33,16 @@ const OrderList = () => {
                     <h1>Order list</h1>
                 </div>
                 {orders.length === 0 ?
-                    <img style={{ width: "90%", margin: "0 auto" }} src={loader} alt="" />
+                    <img style={{ width: "150px", margin: "0 auto" }} src={loader} alt="" />
                     :
                     <div className="mini-card-container">
-                    {
-                        orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id}  status={order.status} />)
-                    }
-                </div>
+                        {
+                            orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id} status={order.status} />)
+                        }
+                    </div>
 
                 }
-              
+
             </div>
         </div>
     );
