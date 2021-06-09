@@ -48,6 +48,9 @@ const Navbar = () => {
                     <li className="nav-item">
                         <NavLink onClick={() => setActive("about")} className={active === "about" ? "nav-link active" : "nav-link"} smooth to="/#about"> About Us </NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink onClick={() => setActive("contact")} className={active === "about" ? "nav-link active" : "nav-link"} smooth to="/#contactUs"> Contact </NavLink>
+                    </li>
 
 
                     {

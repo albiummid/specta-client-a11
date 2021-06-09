@@ -14,7 +14,6 @@ if (!firebase.apps.length) {
     firebase.app();
 }
 
-
 const Login = () => {
     const [userData, setUserData] = useContext(UserContext);
     const history = useHistory();
@@ -45,7 +44,6 @@ const Login = () => {
                         if (isAdmin) {
                             user.isAdmin = 'true'
                             sessionStorage.setItem('user', JSON.stringify(user));
-
                         }
                         else {
                             user.isAdmin = 'false';
@@ -53,6 +51,7 @@ const Login = () => {
 
                         }
                         setUserData(user);
+                        swal(`Hello 🖐 ,${user.name}`, "You are successfully logged in!", "success");
                         history.push(from);
                     });
 
@@ -109,7 +108,6 @@ const Login = () => {
     // Submiting the input value to the server.
     const handleSubmit = (event) => {
         if (newUser && user.email && user.password && user.name) {
-
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
 
                 .then(res => {
@@ -132,7 +130,8 @@ const Login = () => {
                             }
                         });
 
-                    alert('SignUp successfully completed 😍')
+                    swal(`Hello 🖐 ,${newUserInfo.name}`, "You are successfully logged in!", "success");
+                    history.push(from);
                     updateUserName(user.name);
                     history.push(from);
 
@@ -148,7 +147,6 @@ const Login = () => {
         if (!newUser && user.email && user.password) {
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
                 .then(res => {
-
                     const { email, displayName } = res.user;
                     const newUserInfo = { email, name: displayName };
                     newUserInfo.error = '';
@@ -167,29 +165,76 @@ const Login = () => {
                             }
 
                         });
-
-                    alert("login successful 😍")
+                    swal(`Hello 🖐 ,${newUserInfo.name}`, "Your signed in successfully!", "success");
                     history.push(from);
-
                 })
                 .catch((error) => {
-                    const newUserInfo = {};
-                    newUserInfo.error = error.message;
-                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     alert(`${error.message}`)
                 });
         }
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
     }
 
     const updateUserName = name => {
         var user = firebase.auth().currentUser;
-
         user.updateProfile({
             displayName: name
         }).then(function () {
         }).catch(function (error) {
         });
+    }
+    const handleDemo = ({ email, password }) => {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(res => {
+                const { email, displayName } = res.user;
+                const newUserInfo = { email, name: displayName };
+                newUserInfo.error = '';
+                fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
+                    .then(res => res.json())
+                    .then(isAdmin => {
+                        if (isAdmin) {
+                            newUserInfo.isAdmin = 'true';
+                            sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                            setUserData(newUserInfo);
+                        }
+                        else {
+                            newUserInfo.isAdmin = 'false';
+                            sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                            setUserData(newUserInfo);
+                        }
+
+                    });
+                history.push(from);
+                swal(`Hello 🖐 ,${newUserInfo.name}`, "Your signed in successfully!", "success");
+
+            })
+            .catch((error) => {
+                alert(`${error.message}`)
+            });
+    }
+
+    const demoHandler = () => {
+        const demoUser = {
+            email: 'admin-demo@specta.com',
+            password: '123456'
+        };
+        swal({
+            title: "Are you want to login as a demo admin?",
+            text: "By click in okay,you will login as a demo admin and you get a overview of this website.This won't give you the permisson to delete or modify anything.But You can update the order status.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((agree) => {
+                if (agree) {
+                    handleDemo(demoUser);
+                } else {
+                    swal("Loggin with an account");
+                }
+            });
+        console.log(user);
     }
 
 
@@ -205,6 +250,12 @@ const Login = () => {
                     {
                         newUser ? <button onClick={() => setNewUser(!newUser)}> Already have an account ? </button> :
                             <button onClick={() => setNewUser(!newUser)}> Create an account ? </button>
+                    }
+                    {
+                        !newUser &&
+                        <button onClick={demoHandler}>
+                            Try Out Demo Admin ?
+                    </button>
                     }
 
                 </div>

@@ -27,7 +27,6 @@ function App() {
     }
   }, [])
 
-  console.log(userData);
 
   return (
     <UserContext.Provider value={[userData, setUserData]} >

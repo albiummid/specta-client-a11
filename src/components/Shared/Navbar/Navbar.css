@@ -5,6 +5,9 @@
   height: 60px;
   background-color: hsl(203, 21%, 15%);
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 .nav-links {
   display: flex;
@@ -76,7 +79,7 @@ li {
 .nav-link-active {
   border-bottom: 5px solid tomato;
 }
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .nav-item {
     height: 90px;
   }
