@@ -1,8 +1,8 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import React, { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
-
-const SimplecardForm = ({handlePaymentSuccess}) => {
+const SimplecardForm = ({ handlePaymentSuccess }) => {
     const [paymentError, setPaymentError] = useState(null);
     const [paymentSuccess, setPaymentSuccess] = useState(null);
     const stripe = useStripe();
@@ -11,7 +11,7 @@ const SimplecardForm = ({handlePaymentSuccess}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!stripe || !elements) {
-  
+
             return;
         }
 
@@ -31,25 +31,29 @@ const SimplecardForm = ({handlePaymentSuccess}) => {
             setPaymentError(null);
             handlePaymentSuccess(paymentMethod.id);
         }
-      
+
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <Toaster
+                    position="bottom-center"
+                    reverseOrder={false}
+                />
                 <CardElement />
-                {paymentError && 
-                <p style={{color:"red"}}>{ paymentError }</p>
-            }
-            {
-                paymentSuccess && 
-                <p style={{ color:'green'}}> Your Payment was Successfull !</p>
-            }
+                {paymentError &&
+                    toast.error('Payment was unsuccessfull!')
+                }
+                {
+                    paymentSuccess &&
+                    toast.success('Payment was successfull!')
+                }
                 <button className="brand-btn" type="submit" disabled={!stripe}>
                     Order !
                 </button>
             </form>
-          
+
         </div>
     );
 };

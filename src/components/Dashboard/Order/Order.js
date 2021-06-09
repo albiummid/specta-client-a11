@@ -4,6 +4,7 @@ import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './Order.css';
 import { UserContext } from '../../../App';
 import ProcessPayment from './ProcessPayment/ProcessPayment';
+import swal from 'sweetalert';
 
 const Order = () => {
     const [orderInfo, setOrderInfo] = useState(null);
@@ -42,7 +43,9 @@ const Order = () => {
                 .then(response => response.json())
                 .then(success => {
                     if (success) {
-                        alert("order Successfully Completed")
+                        swal("Order Successfully completed !", {
+                            icon: "success",
+                        });
                         // modal
                     }
                 })
