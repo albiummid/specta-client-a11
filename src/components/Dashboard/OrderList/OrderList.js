@@ -16,7 +16,7 @@ const OrderList = () => {
                 setOrders(data);
                 setLoading(false);
             })
-    }, [user.email]);
+    }, [update]);
     const handleDelete = (id) => {
         swal({
             title: "Are you sure?",
@@ -58,13 +58,14 @@ const OrderList = () => {
                     <img style={{ width: "150px", margin: "0 auto" }} src={loader} alt="" />
                 }
 
-                {orders.length > 0 && !loading ?
+                {orders.length > 0 &&
                     <div className="mini-card-container">
                         {
                             orders.map(order => <OrderListCard data={order.serviceInfo} handleDelete={handleDelete} id={order._id} status={order.status} />)
                         }
                     </div>
-                    :
+                }
+                {!loading && !orders.length > 0 &&
                     <h2>
                         Your order list is empty !
                     </h2>

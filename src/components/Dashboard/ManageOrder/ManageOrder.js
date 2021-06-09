@@ -73,7 +73,9 @@ const ManageOrder = () => {
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    alert("Book Information Updated !");
+                    swal("Order status updated !", {
+                        icon: "success",
+                    });
                     setUpdate(!update);
 
                 }

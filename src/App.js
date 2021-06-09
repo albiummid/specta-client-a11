@@ -12,9 +12,9 @@ import Home from './components/Home/Home/Home';
 import Login from './components/Login/Login';
 import NotMatched from './components/NotMatched/NotMatched';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Footer from './components/Shared/Footer/Footer';
 import Navbar from './components/Shared/Navbar/Navbar'; export const UserContext = createContext();
-
 function App() {
   const [userData, setUserData] = useState({});
   useEffect(() => {
@@ -31,46 +31,49 @@ function App() {
   return (
     <UserContext.Provider value={[userData, setUserData]} >
       <Router>
-        <Navbar />
-        <Switch>
-          <PrivateRoute path="/dashboard/order-list">
-            <OrderList />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/add-feature" >
-            <AddFeature />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/add-review" >
-            <AddReview />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/add-service" >
-            <AddService />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/order/:id" >
-            <Order />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/order" >
-            <Order />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/add-admin" >
-            <AddAdmin />
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard/manage-order" >
-            <ManageOrder />
-          </PrivateRoute>
-          <Route path="/login" >
-            <Login />
-          </Route>
-          <Route path="/home">
-            <Redirect to='/' />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="*" >
-            <NotMatched />
-          </Route>
-        </Switch>
-        <Footer />
+        <ScrollToTop>
+
+          <Navbar />
+          <Switch>
+            <PrivateRoute path="/dashboard/order-list">
+              <OrderList />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/add-feature" >
+              <AddFeature />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/add-review" >
+              <AddReview />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/add-service" >
+              <AddService />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/order/:id" >
+              <Order />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/order" >
+              <Order />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/add-admin" >
+              <AddAdmin />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/manage-order" >
+              <ManageOrder />
+            </PrivateRoute>
+            <Route path="/login" >
+              <Login />
+            </Route>
+            <Route path="/home">
+              <Redirect to='/' />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="*" >
+              <NotMatched />
+            </Route>
+          </Switch>
+          <Footer />
+        </ScrollToTop>
       </Router>
     </UserContext.Provider>
   )
