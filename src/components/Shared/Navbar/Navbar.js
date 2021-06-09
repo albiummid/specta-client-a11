@@ -49,14 +49,16 @@ const Navbar = () => {
                         <NavLink onClick={() => setActive("about")} className={active === "about" ? "nav-link active" : "nav-link"} smooth to="/#about"> About Us </NavLink>
                     </li>
 
-                    <li className="nav-item">
-                        {
-                            userData?.name && <p className="nav-link user-name">
+
+                    {
+                        userData?.name &&
+                        <li className="nav-item">
+                            <p className="nav-link user-name">
                                 {userData.name}
                             </p>
+                        </li>
 
-                        }
-                    </li>
+                    }
                     <li className="nav-item">
                         {
                             userData?.email ? <NavLink smooth to='/' onClick={handleSignOut} className="nav-link-mobile">Sign Out</NavLink>

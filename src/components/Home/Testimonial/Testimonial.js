@@ -20,6 +20,7 @@ const Testimonial = () => {
                     reviewData.map(data => <TestimonialCard key={data._id} data={data} />)
                 }
             </div>
+
         </section>
     );
 };

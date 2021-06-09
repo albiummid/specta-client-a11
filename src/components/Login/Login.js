@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import firebaseConfig from './firebase.config';
 import signIn from "../../images/signIn.jpg";
 import signUp from "../../images/signUp.jpg";
@@ -7,6 +7,7 @@ import "./Login.css";
 import firebase from "firebase/app";
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
+import swal from 'sweetalert'
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
@@ -19,7 +20,7 @@ const Login = () => {
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
-   
+
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -28,13 +29,7 @@ const Login = () => {
     })
     const [newUser, setNewUser] = useState(false);
 
-    const handleGetToken = () => {
-        firebase.auth().currentUser.getIdToken(true)
-            .then(function (idToken) {
-            }).catch(function (error) {
-                // Handle error
-            });
-    }
+
 
 
     const handleGoogleSignIn = () => {
@@ -42,13 +37,25 @@ const Login = () => {
         firebase.auth()
             .signInWithPopup(provider)
             .then((result) => {
-                const idToken = result.credential.idToken;
-                const { email, displayName,img: photoURL } = result.user;
+                const { email, displayName, img: photoURL } = result.user;
                 const user = { email, name: displayName, img: photoURL };
-                sessionStorage.setItem('user', JSON.stringify(user));
-                setUserData(user);
-                handleGetToken();
-                history.push(from);
+                fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
+                    .then(res => res.json())
+                    .then(isAdmin => {
+                        if (isAdmin) {
+                            user.isAdmin = 'true'
+                            sessionStorage.setItem('user', JSON.stringify(user));
+
+                        }
+                        else {
+                            user.isAdmin = 'false';
+                            sessionStorage.setItem('user', JSON.stringify(user));
+
+                        }
+                        setUserData(user);
+                        history.push(from);
+                    });
+
 
             }).catch((error) => {
                 const newUserInfo = {}
@@ -63,9 +70,7 @@ const Login = () => {
     // Handaling Value change of Input fields
     const handleChange = (event) => {
         let isFieldValid = true;
-        let isPasswordMatched = false;
-
-
+        let isPasswordMatched = true;
         if (event.target.name === 'name') {
             isFieldValid = true;
         }
@@ -75,17 +80,22 @@ const Login = () => {
         }
 
         if (event.target.name === 'password') {
+            user.error = '';
             const isPasswordValid = event.target.value.length > 6;
             const isPasswordHasNumber = /\d{1}/.test(event.target.value)
             isFieldValid = isPasswordValid && isPasswordHasNumber;
+            setUser({ ...user, password: event.target.value, error: '' })
         }
         if (newUser && event.target.name === 'confirmPassword') {
-            if (event.target.value === user.password) {
-                isPasswordMatched = true;
-                const isPasswordValid = event.target.value.length > 6;
-                const isPasswordHasNumber = /\d{1}/.test(event.target.value)
-                isFieldValid = isPasswordMatched && isPasswordValid && isPasswordHasNumber;
-            }
+            setUser({ ...user, confirmPassword: event.target.value })
+        }
+        if (user.confirmPassword === user.password) {
+            isPasswordMatched = true;
+            isFieldValid = isPasswordMatched;
+        }
+        else {
+            isPasswordMatched = false;
+            isFieldValid = isPasswordMatched;
         }
 
         if (isFieldValid) {
@@ -107,7 +117,21 @@ const Login = () => {
                     const newUserInfo = { email, name: displayName };
                     newUserInfo.name = user.name;
                     newUserInfo.error = '';
-                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                    fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
+                        .then(res => res.json())
+                        .then(isAdmin => {
+                            if (isAdmin) {
+                                newUserInfo.isAdmin = 'true'
+                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                                setUserData(newUserInfo);
+                            }
+                            else {
+                                newUserInfo.isAdmin = 'false';
+                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                                setUserData(newUserInfo);
+                            }
+                        });
+
                     alert('SignUp successfully completed 😍')
                     updateUserName(user.name);
                     history.push(from);
@@ -127,10 +151,25 @@ const Login = () => {
 
                     const { email, displayName } = res.user;
                     const newUserInfo = { email, name: displayName };
-                    sessionStorage.setItem('user', JSON.stringify(newUserInfo));
                     newUserInfo.error = '';
+                    fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
+                        .then(res => res.json())
+                        .then(isAdmin => {
+                            if (isAdmin) {
+                                newUserInfo.isAdmin = 'true';
+                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                                setUserData(newUserInfo);
+                            }
+                            else {
+                                newUserInfo.isAdmin = 'false';
+                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
+                                setUserData(newUserInfo);
+                            }
+
+                        });
+
                     alert("login successful 😍")
-                    history.replace(from)
+                    history.push(from);
 
                 })
                 .catch((error) => {
@@ -203,7 +242,7 @@ const Login = () => {
                                 </span>
                                 <input onChange={handleChange} type="password" name="confirmPassword" placeholder="Confirm Password" minLength="6" required />
                                 {
-                                    user.confirmPassword !== user.password && <p style={{ color: "red" }}>Passwords are not same</p>
+                                    user.confirmPassword && user.confirmPassword !== user.password && <p style={{ color: "red" }}>Passwords are not same</p>
                                 }
                             </div>
                         }

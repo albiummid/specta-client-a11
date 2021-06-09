@@ -6,21 +6,18 @@ const Sidebar = () => {
     const [userData, setUserData] = useContext(UserContext);
     const [isAdmin, setIsAdmin] = useState(userData.isAdmin);
 
-
-
     return (
         <div className="sidebar">
             <div className="section-header">
                 <h1>DASHBOARD</h1>
             </div>
             <ul className="bar">
-
                 <li className=" bar-item">
                     <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/order">
                         <i class="fas fa-shopping-cart"></i> Order
                     </NavLink>
                 </li>
-                <li className=" bar-item">
+                <li className="bar-item">
                     <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-review">
 
                         <i class="fas fa-comments"></i> Review
@@ -46,14 +43,14 @@ const Sidebar = () => {
                       </NavLink>
                     </li>}
 
-                {isAdmin &&
+                {isAdmin === 'true' &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-service">
                             <i class="fab fa-servicestack"></i>  Add Service
                       </NavLink>
                     </li>
                 }
-                {isAdmin &&
+                {isAdmin === 'true' &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-admin">
                             <i class="fas fa-user-plus"></i> Add Admin

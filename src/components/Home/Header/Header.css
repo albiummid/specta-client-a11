@@ -1,74 +1,66 @@
-.main{
-    width: 100%;
-    min-height: 100vh;
-    padding: 0  50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background: url(../../../images/bg.jpg);
-    background-size: cover;
-
+.main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 50px;
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background: url(../../../images/bg.jpg);
+  background-size: cover;
 }
-.top-banner{
-    display: flex;
- 
-   align-items: center;
-  max-width: 800px;
+.top-banner {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
 }
-.top-banner img{
-    margin: 50px auto;
-    width: 90%;
-    animation: imageAnimation 1s ;
-    transition: transform ease-in-out .3s;
+.top-banner img {
+  width: 100%;
+  animation: imageAnimation 1s;
+  transition: transform ease-in-out 0.3s;
 }
 
 @keyframes imageAnimation {
-    from{
-transform:translateX(100%)
-
-    }
-    to{
-transform: translateX(0)
-    }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
-.top-banner img:hover{
-    cursor: pointer;
-    /* transform:  translateY(-5%) translateX(5%) ; */
-    
-
+.top-banner img:hover {
+  cursor: pointer;
+  transform: translateY(-5%) translateX(5%);
 }
-.intro{
-    margin-top: 100px;
-    max-width: 500px;
-    color: #f2f2f2;
-    padding-top: 50px;
-
+.intro {
+  margin-top: 100px;
+  max-width: 500px;
+  color: #f2f2f2;
+  padding-top: 50px;
 }
-.intro h1{
-    color: #5AD5B8;
+.intro h1 {
+  color: #5ad5b8;
 }
-.brand-btn{
-    background:linear-gradient(90deg,#00A2C3,#00DCF5);
-    margin: 30px auto;
-    color: white;
-    width: 150px;
-    height: 40px;
-    padding:5px 10px;
-    outline: none;
-    opacity: .8;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all .4s ease-out;
+.brand-btn {
+  background: linear-gradient(90deg, #00a2c3, #00dcf5);
+  margin: 30px auto;
+  color: white;
+  width: 150px;
+  height: 40px;
+  padding: 5px 10px;
+  outline: none;
+  opacity: 0.8;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.4s ease-out;
 }
-.brand-btn:hover{
-    cursor: pointer;
-    opacity: 1;
-    transform: translateY(-10px);
+.brand-btn:hover {
+  cursor: pointer;
+  opacity: 1;
+  transform: translateY(-10px);
 }
-.brand-btn:active{
+.brand-btn:active {
   opacity: 0.7;
   transform: translateX(10px);
 }
-
-

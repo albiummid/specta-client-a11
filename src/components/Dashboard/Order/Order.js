@@ -8,7 +8,7 @@ import ProcessPayment from './ProcessPayment/ProcessPayment';
 const Order = () => {
     const [orderInfo, setOrderInfo] = useState(null);
     const { id } = useParams();
-   const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+    const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     const [service, setService] = useState({});
     useEffect(() => {
         if (id) {
@@ -75,7 +75,7 @@ const Order = () => {
                             <form >
 
                                 <input onChange={handleChange} type="text" name="name" required placeholder="Your Name" />
-                                <input onChange={handleChange} type="text" name="email" required placeholder="Your Email" />
+                                <input onChange={handleChange} type="text" value={loggedInUser?.email} name="email" required placeholder="Your Email" disabled />
                                 <input onChange={handleChange} type="text" name="phone" required placeholder="Your Phone" />
                                 <input onChange={handleChange} type="text" name="address" required placeholder="Your Address" /><br />
 

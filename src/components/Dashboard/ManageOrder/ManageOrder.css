@@ -1,15 +1,20 @@
-.table-container{
-    border: 1px solid black;
+.table-container {
+  border: 1px solid black;
   min-width: 380px;
   max-width: 800px;
-   margin: 0 auto;
-   text-align: center;
-   padding: 10px;
-}
-@media(max-width:768px){
-  .table-container,.table-container select,.table-container img{
-    font-size: 8px;
-  width: 90%;
   margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+@media (max-width: 768px) {
+  .table-container,
+  .table-container select,
+  .table-container img {
+    font-size: 8px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .s-none {
+    display: none;
   }
 }

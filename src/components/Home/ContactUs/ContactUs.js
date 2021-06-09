@@ -1,37 +1,35 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './ContactUs.css'
-import contactImg from '../../../images/contact.jpg'
 import emailjs from 'emailjs-com';
+import swal from 'sweetalert';
 const ContactUs = () => {
     const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     function sendEmail(e) {
         e.preventDefault();
-        console.log(e.target);
-    
+
         emailjs.sendForm('service_vp1bxr9', 'template_al7ex9l', e.target, 'user_f4Q4w652L2ya4ymbYdO4H')
             .then((result) => {
-                console.log(result);
-              alert("Your message submitted")
-          }, (error) => {
-              alert("Message sending failed!")
-          });
-      }
+                swal("Great!", "Your Messsage send successfully", "success");
+            }, (error) => {
+                swal("Sorry!", `${error}`, "error");
+            });
+    }
     return (
         <section id="contactUs">
             <div className="section-header">
                 <h1>Contact Us</h1>
             </div>
             <div className="contact-container">
-                <div className="contact-img">
-                    <img src={contactImg} alt="" />
-                </div>
                 <form onSubmit={sendEmail}>
-                    <input type="text" defaultValue={loggedInUser?.name} name="from_name" placeholder="Your Name" required />
-                    <input type="email" defaultValue={loggedInUser?.email} name="reply_to" placeholder="Your email" required />
+                    <div className="info">
+                        <input type="text" defaultValue={loggedInUser?.name} name="from_name" placeholder="Your Name" required />
+                        <input type="email" defaultValue={loggedInUser?.email} name="reply_to" placeholder="Your email" required />
+                    </div>
+                    <input type="text" name="subject" placeholder="Subject" required />
                     <textarea type="message" name="message" placeholder="Your Message" required />
-                    <button type="submit" className="brand-btn"> Submit </button>
+                    <button type="submit" className="brand-btn"> Send </button>
                 </form>
-               
+
             </div>
 
         </section>

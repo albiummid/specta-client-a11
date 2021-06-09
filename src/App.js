@@ -18,23 +18,15 @@ import Navbar from './components/Shared/Navbar/Navbar'; export const UserContext
 function App() {
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    const data = JSON.parse(sessionStorage.getItem('user'));
+    const data = JSON.parse(sessionStorage.getItem('user'))
     if (data) {
-      fetch(`https://specta-web.herokuapp.com/isAdmin?email=${data.email}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data) {
-            const newData = { ...userData }
-            newData.isAdmin = 'true';
-            setUserData(newData)
-          }
-        });
+      setUserData(data);
     }
     else {
       setUserData({});
     }
-
   }, [])
+
   console.log(userData);
 
   return (

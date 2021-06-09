@@ -1,35 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './AddService.css'
+import swal from 'sweetalert'
+import { useHistory } from 'react-router';
 const AddService = () => {
     const [file, setFile] = useState(null);
     const { register, handleSubmit } = useForm();
+    const [demo, setDemo] = useState(false);
+    const history = useHistory();
+    useEffect(() => {
+        const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+        if (loggedInUser.isAdmin === 'false') {
+            history.replace('/');
+        }
+        if (loggedInUser.email === 'admin-demo@specta.com') {
+            setDemo(true);
+            swal("Sorry!", "You are a demo admin,this feature is not available for you.", "warning");
+        }
+    }, []);
     const onSubmit = data => {
-        const formData = new FormData()
-        formData.append('file', file);
-        formData.append('title', data.title);
-        formData.append('price', data.price);
-        formData.append('subType', data.subType);
-        formData.append('speed', data.speed);
-        formData.append('realIp', data.realIp);
-        formData.append('opticFiber', data.opticFiber);
-        formData.append('bdix', data.bdix);
-        formData.append('router', data.router);
+        if (demo) {
+            swal("Sorry!", "You are a demo admin", "warning");
+        }
+        else {
+            const formData = new FormData()
+            formData.append('file', file);
+            formData.append('title', data.title);
+            formData.append('price', data.price);
+            formData.append('subType', data.subType);
+            formData.append('speed', data.speed);
+            formData.append('realIp', data.realIp);
+            formData.append('opticFiber', data.opticFiber);
+            formData.append('bdix', data.bdix);
+            formData.append('router', data.router);
 
-        fetch('https://specta-web.herokuapp.com/addService', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(success => {
-                if (success) {
-                    alert("data uploaded !!!!")
-                }
+            fetch('https://specta-web.herokuapp.com/addService', {
+                method: 'POST',
+                body: formData
             })
-            .catch(error => {
-                console.error(error)
-            })
+                .then(response => response.json())
+                .then(success => {
+                    if (success) {
+                        swal("Good job!", "A new service card added!", "success");
+                    }
+                })
+                .catch(error => {
+                    swal("Error!", `${error}`, "error");
+                })
+        }
+
     }
     const handleFileChange = (e) => {
         const newFile = e.target.files[0];
@@ -89,11 +109,12 @@ const AddService = () => {
 
                         <input onChange={handleFileChange} type="file" />
 
-                        <button type="submit" className="brand-btn" > Submit </button>
+                        <div className="btn_div">
+                            <button type="submit" className="brand-btn" > Submit </button>
+                        </div>
                     </form>
                 </div>
             </div>
-
         </div>
     );
 };

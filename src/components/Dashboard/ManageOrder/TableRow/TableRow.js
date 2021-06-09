@@ -1,20 +1,21 @@
 import React from 'react';
 import './TableRow.css';
-import xIcon from '../../../../images/icons/x-button.png'
-const TableRow = ({ data, handleDelete, handleUpdate }) => {
-    const { serviceInfo,orderInfo, email, _id ,status } = data;
+import check from '../../../../images/icons/check.png'
+const TableRow = ({ data, handleDelete, handleUpdate, id }) => {
+    const { serviceInfo, orderInfo, email, _id, status } = data;
     const handleChange = (e) => {
         const inputInfo = {
             id: _id,
-            value:e.target.value
+            value: e.target.value
         }
         handleUpdate(inputInfo);
     }
     return (
         <tr >
-         <td>{ orderInfo.name }</td>   
-         <td>{ email }</td>   
-         <td>{ serviceInfo.title}</td>   
+            <td>{id}</td>
+            <td>{orderInfo.name}</td>
+            <td className='s-none'>{email}</td>
+            <td>{serviceInfo.title}</td>
             <td>
                 <select onChange={handleChange} >
                     <option value={status}>{status}</option>
@@ -32,11 +33,11 @@ const TableRow = ({ data, handleDelete, handleUpdate }) => {
                         <option value="Pending" >Pending</option>
 
                     }
-                    
-                    
+
+
                 </select>
             </td>
-            <td><button className="delete-btn" onClick={()=>handleDelete(_id)} ><img src={xIcon} alt=""/></button></td>   
+            <td><button className="delete-btn" onClick={() => handleDelete(_id)} ><img src={check} alt="" /></button></td>
         </tr>
     );
 };
