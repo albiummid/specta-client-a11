@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './Order.css';
 import { UserContext } from '../../../App';
@@ -7,6 +7,7 @@ import ProcessPayment from './ProcessPayment/ProcessPayment';
 import swal from 'sweetalert';
 
 const Order = () => {
+    const history = useHistory();
     const [orderInfo, setOrderInfo] = useState(null);
     const { id } = useParams();
     const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
@@ -46,7 +47,8 @@ const Order = () => {
                         swal("Order Successfully completed !", {
                             icon: "success",
                         });
-                        // modal
+
+                        history.push('/dashboard/order-list')
                     }
                 })
         }

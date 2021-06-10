@@ -6,10 +6,10 @@ const ContactUs = () => {
     const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
     function sendEmail(e) {
         e.preventDefault();
-        e.target.reset();
         emailjs.sendForm('service_vp1bxr9', 'template_al7ex9l', e.target, 'user_f4Q4w652L2ya4ymbYdO4H')
             .then((result) => {
                 swal("Great!", "Your Messsage send successfully", "success");
+                e.target.reset();
             }, (error) => {
                 swal("Sorry!", `${error}`, "error");
             })

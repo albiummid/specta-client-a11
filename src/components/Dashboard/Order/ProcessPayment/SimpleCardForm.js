@@ -45,10 +45,6 @@ const SimplecardForm = ({ handlePaymentSuccess }) => {
                 {paymentError &&
                     toast.error('Payment was unsuccessfull!')
                 }
-                {
-                    paymentSuccess &&
-                    toast.success('Payment was successfull!')
-                }
                 <button className="brand-btn" type="submit" disabled={!stripe}>
                     Order !
                 </button>

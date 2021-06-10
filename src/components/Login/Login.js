@@ -18,7 +18,7 @@ const Login = () => {
     const [userData, setUserData] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: "/" } };
+    const { from } = location.state;
 
     const [user, setUser] = useState({
         name: '',
@@ -27,8 +27,6 @@ const Login = () => {
         confirmPassword: '',
     })
     const [newUser, setNewUser] = useState(false);
-
-
 
 
     const handleGoogleSignIn = () => {
@@ -81,7 +79,7 @@ const Login = () => {
         if (event.target.name === 'password') {
             user.error = '';
             const isPasswordValid = event.target.value.length > 6;
-            const isPasswordHasNumber = /\d{1}/.test(event.target.value)
+            const isPasswordHasNumber = /\d{1}/.test(event.target.value);
             isFieldValid = isPasswordValid && isPasswordHasNumber;
             setUser({ ...user, password: event.target.value, error: '' })
         }
@@ -129,9 +127,8 @@ const Login = () => {
                                 setUserData(newUserInfo);
                             }
                         });
-
                     swal(`Hello 🖐 ,${newUserInfo.name}`, "You are successfully logged in!", "success");
-                    history.push(from);
+                    console.log(from);
                     updateUserName(user.name);
                     history.push(from);
 
@@ -233,8 +230,8 @@ const Login = () => {
                 } else {
                     swal("Loggin with an account");
                 }
+                history.replace(from);
             });
-        console.log(user);
     }
 
 

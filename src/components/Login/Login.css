@@ -8,6 +8,9 @@
   box-shadow: 10px 10px 15px gray;
   border-radius: 10px;
 }
+.card-container {
+  min-height: 100vh;
+}
 .input-div,
 .img-div {
   padding-top: 50px;

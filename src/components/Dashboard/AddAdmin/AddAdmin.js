@@ -50,7 +50,7 @@ const AddAdmin = () => {
       <Sidebar />
       <div className="dashboard-area">
         <div className="section-header">
-          <h1>Add a user as ADMIN</h1>
+          <h1>Make a user ADMIN</h1>
         </div>
         <div className="form-container">
 
