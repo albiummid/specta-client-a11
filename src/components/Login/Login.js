@@ -18,7 +18,7 @@ const Login = () => {
     const [userData, setUserData] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
-    const { from } = location.state;
+    const { from } = location.state || { from: { pathname: "/" } };
 
     const [user, setUser] = useState({
         name: '',
@@ -252,7 +252,7 @@ const Login = () => {
                         !newUser &&
                         <button onClick={demoHandler}>
                             Try Out Demo Admin ?
-                    </button>
+                        </button>
                     }
 
                 </div>

@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './Order.css';
 import { UserContext } from '../../../App';
 import ProcessPayment from './ProcessPayment/ProcessPayment';
 import swal from 'sweetalert';
-
 const Order = () => {
     const history = useHistory();
     const [orderInfo, setOrderInfo] = useState(null);

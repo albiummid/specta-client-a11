@@ -75,6 +75,7 @@ textarea:focus {
   width: 10px;
 }
 .social-links {
+  cursor: s;
   display: flex;
   justify-content: space-around;
   align-items: center;
