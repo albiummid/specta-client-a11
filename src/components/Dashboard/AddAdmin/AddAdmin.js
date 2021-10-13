@@ -2,22 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './AddAdmin.css'
 import { useForm } from "react-hook-form";
-import swal from 'sweetalert'
 import toast, { Toaster } from 'react-hot-toast';
-import { useHistory } from 'react-router';
+import { GetContexts } from '../../../context/AuthProvider';
 const AddAdmin = () => {
-  const history = useHistory();
+  const { user } = GetContexts();
   const [demo, setDemo] = useState(false);
-  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
   useEffect(() => {
-    if (loggedInUser.isAdmin === 'false') {
-      history.replace('/');
-    }
-    if (loggedInUser.email === 'admin-demo@specta.com') {
+    if (user?.email === 'admin-demo@specta.com') {
       setDemo(true);
-      swal("Sorry!", "You are a demo admin,this feature is not available for you.", "warning");
     }
-  }, [loggedInUser?.email]);
+  }, [user?.email]);
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
     if (!demo) {
@@ -42,7 +36,7 @@ const AddAdmin = () => {
   }
 
   return (
-    <section className="dashboard-container">
+    <div className="dashboard-container">
       <Toaster
         position="bottom-right"
         reverseOrder={false}
@@ -63,7 +57,7 @@ const AddAdmin = () => {
         </div>
       </div>
 
-    </section>
+    </div>
   );
 };
 

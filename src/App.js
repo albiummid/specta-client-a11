@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
@@ -14,22 +14,12 @@ import NotMatched from './components/NotMatched/NotMatched';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Footer from './components/Shared/Footer/Footer';
-import Navbar from './components/Shared/Navbar/Navbar'; export const UserContext = createContext();
+import Navbar from './components/Shared/Navbar/Navbar';import AuthProvider from './context/AuthProvider';
 function App() {
-  const [userData, setUserData] = useState({});
-  useEffect(() => {
-    const data = JSON.parse(sessionStorage.getItem('user'))
-    if (data) {
-      setUserData(data);
-    }
-    else {
-      setUserData({});
-    }
-  }, []);
 
 
   return (
-    <UserContext.Provider value={[userData, setUserData]} >
+    <AuthProvider>
       <Router>
         <ScrollToTop>
 
@@ -75,7 +65,7 @@ function App() {
           <Footer />
         </ScrollToTop>
       </Router>
-    </UserContext.Provider>
+    </AuthProvider>
   )
 }
 

@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../../App';
+import { GetContexts } from '../../../context/AuthProvider';
 import './Sidebar.css'
 const Sidebar = () => {
-    const [userData, setUserData] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useState(userData.isAdmin);
-
+    let {user,isAdmin} = GetContexts();
     return (
         <div className="sidebar">
             <div className="section-header">
@@ -29,28 +26,28 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
 
-                {isAdmin === 'true' &&
+                {isAdmin &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/manage-order">
                             <i class="fas fa-tasks"></i> Manage Order
                       </NavLink>
                     </li>
                 }
-                {isAdmin === 'true' &&
+                {isAdmin &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-feature">
                             <i class="fas fa-puzzle-piece"></i> Add Feature
                       </NavLink>
                     </li>}
 
-                {isAdmin === 'true' &&
+                {isAdmin&&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-service">
                             <i class="fab fa-servicestack"></i>  Add Service
                       </NavLink>
                     </li>
                 }
-                {isAdmin === 'true' &&
+                {isAdmin &&
                     <li className=" bar-item">
                         <NavLink activeClassName="active-bar" className=" bar-link" to="/dashboard/add-admin">
                             <i class="fas fa-user-plus"></i> Add Admin

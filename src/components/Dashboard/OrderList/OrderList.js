@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
-import loader from '../../../images/loadingAnimation.gif'
 import './OrderList.css'
 import swal from 'sweetalert';
 import OrderListCard from './OrderListCard/OrderListCard';
+import { GetContexts } from '../../../context/AuthProvider';
+import Loading from '../../Loading/Loading';
 const OrderList = () => {
     const [update, setUpdate] = useState(false);
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const {user,isAdmin} = GetContexts();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${user.email}`)
+        fetch(`https://specta-web.herokuapp.com/ordersByEmail?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
@@ -55,7 +56,7 @@ const OrderList = () => {
                     <h1>Order list</h1>
                 </div>
                 {loading &&
-                    <img style={{ width: "150px", margin: "0 auto" }} src={loader} alt="" />
+                    <Loading/>
                 }
 
                 {orders.length > 0 &&

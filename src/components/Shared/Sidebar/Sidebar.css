@@ -1,21 +1,17 @@
 .sidebar {
-  text-align: left;
-  width: 350px;
   min-height: 100vh;
   background-color: #293339;
 }
 .active-bar {
-  background-color: hsl(166, 41%, 55%);
+  background-color: #5dbba5;
 }
 .bar-item {
   text-decoration: none;
 }
 .bar-link {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.85rem;
-  width: 350px;
   padding: 20px;
   border-radius: 10px;
 }

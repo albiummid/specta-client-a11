@@ -1,8 +1,13 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { GetContexts } from '../../context/AuthProvider';
+import Loading from '../Loading/Loading';
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const { user,loading } = GetContexts();
+  if (loading) {
+    return <Loading />
+  }
   return (
     <Route
       {...rest}

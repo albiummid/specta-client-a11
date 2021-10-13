@@ -5,9 +5,9 @@ import signUp from "../../images/signUp.jpg";
 import "firebase/auth";
 import "./Login.css";
 import firebase from "firebase/app";
-import { useHistory, useLocation } from 'react-router-dom';
-import { UserContext } from '../../App';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import swal from 'sweetalert'
+import { GetContexts } from '../../context/AuthProvider';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
 }
 
 const Login = () => {
-    const [userData, setUserData] = useContext(UserContext);
+    const {setIsAdmin,refetcher,setLoading,setUserData} = GetContexts();
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
@@ -29,28 +29,22 @@ const Login = () => {
     const [newUser, setNewUser] = useState(false);
 
 
-    const handleGoogleSignIn = () => {
+    const handleGoogleSignIn = async() => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth()
             .signInWithPopup(provider)
             .then((result) => {
-                const { email, displayName, img: photoURL } = result.user;
-                const user = { email, name: displayName, img: photoURL };
-                fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
+                fetch(`https://specta-web.herokuapp.com/isAdmin?email=${result.user.email}`)
                     .then(res => res.json())
-                    .then(isAdmin => {
-                        if (isAdmin) {
-                            user.isAdmin = 'true'
-                            sessionStorage.setItem('user', JSON.stringify(user));
+                    .then(data => {
+                        if (data) {
+                            setIsAdmin(true)
                         }
                         else {
-                            user.isAdmin = 'false';
-                            sessionStorage.setItem('user', JSON.stringify(user));
-
+                            setIsAdmin(false)
                         }
-                        setUserData(user);
-                        swal(`Hello 🖐 ,${user.name}`, "You are successfully logged in!", "success");
                         history.push(from);
+                        swal(`Hello 🖐 ,${user.name}`, "You are successfully logged in!", "success");
                     });
 
 
@@ -110,27 +104,21 @@ const Login = () => {
 
                 .then(res => {
                     const { email, displayName } = res.user;
-                    const newUserInfo = { email, name: displayName };
-                    newUserInfo.name = user.name;
-                    newUserInfo.error = '';
                     fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
                         .then(res => res.json())
-                        .then(isAdmin => {
-                            if (isAdmin) {
-                                newUserInfo.isAdmin = 'true'
-                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                                setUserData(newUserInfo);
+                        .then(data => {
+                            if (data) {
+                                setIsAdmin(true)
                             }
                             else {
-                                newUserInfo.isAdmin = 'false';
-                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                                setUserData(newUserInfo);
+                                setIsAdmin(false)
                             }
                         });
-                    swal(`Hello 🖐 ,${newUserInfo.name}`, "You are successfully logged in!", "success");
-                    console.log(from);
+                 
+                        history.push(from);
+                    swal(`Hello 🖐 ,${displayName}`, "You are successfully logged in!", "success");
                     updateUserName(user.name);
-                    history.push(from);
+                    
 
                 })
                 .catch((error) => {
@@ -142,30 +130,28 @@ const Login = () => {
                 });
         }
         if (!newUser && user.email && user.password) {
+            setLoading(true);
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
                 .then(res => {
-                    const { email, displayName } = res.user;
-                    const newUserInfo = { email, name: displayName };
-                    newUserInfo.error = '';
+                    const { email} = res.user;
                     fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
                         .then(res => res.json())
-                        .then(isAdmin => {
-                            if (isAdmin) {
-                                newUserInfo.isAdmin = 'true';
-                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                                setUserData(newUserInfo);
+                        .then(data => {
+                            if (data) {
+                                setIsAdmin(true)
                             }
                             else {
-                                newUserInfo.isAdmin = 'false';
-                                sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                                setUserData(newUserInfo);
+                                setIsAdmin(false)
                             }
 
                         });
-                    swal(`Hello 🖐 ,${newUserInfo.name}`, "Your signed in successfully!", "success");
+                    setUserData(res.user)
+                    setLoading(false);
+                    swal(`Hello 🖐 ,${res.user.displayName}`, "Your signed in successfully!", "success");
                     history.push(from);
                 })
                 .catch((error) => {
+                    setLoading(false);
                     alert(`${error.message}`)
                 });
         }
@@ -175,41 +161,15 @@ const Login = () => {
     }
 
     const updateUserName = name => {
+        setLoading(true)
         var user = firebase.auth().currentUser;
         user.updateProfile({
             displayName: name
         }).then(function () {
+            setLoading(false)
         }).catch(function (error) {
+            setLoading(false);
         });
-    }
-    const handleDemo = ({ email, password }) => {
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(res => {
-                const { email, displayName } = res.user;
-                const newUserInfo = { email, name: displayName };
-                newUserInfo.error = '';
-                fetch(`https://specta-web.herokuapp.com/isAdmin?email=${email}`)
-                    .then(res => res.json())
-                    .then(isAdmin => {
-                        if (isAdmin) {
-                            newUserInfo.isAdmin = 'true';
-                            sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                            setUserData(newUserInfo);
-                        }
-                        else {
-                            newUserInfo.isAdmin = 'false';
-                            sessionStorage.setItem('user', JSON.stringify(newUserInfo));
-                            setUserData(newUserInfo);
-                        }
-
-                    });
-                history.push(from);
-                swal(`Hello 🖐 ,${newUserInfo.name}`, "Your signed in successfully!", "success");
-
-            })
-            .catch((error) => {
-                alert(`${error.message}`)
-            });
     }
 
     const demoHandler = () => {
@@ -225,12 +185,21 @@ const Login = () => {
             dangerMode: true,
         })
             .then((agree) => {
+                setLoading(true);
                 if (agree) {
-                    handleDemo(demoUser);
+                    firebase.auth().signInWithEmailAndPassword(demoUser.email, demoUser.password)
+                        .then(res => {
+                            setUserData(res.user);
+                            setLoading(false);
+                            history.push(from);
+                        })
+                        .catch(err => {
+                            swal("Failed");
+                            setLoading(false)
+                        });        
                 } else {
                     swal("Loggin with an account");
                 }
-                history.replace(from);
             });
     }
 
@@ -244,16 +213,8 @@ const Login = () => {
                         newUser ? <img src={signUp} alt="" /> : <img src={signIn} alt="" />
 
                     }
-                    {
-                        newUser ? <button onClick={() => setNewUser(!newUser)}> Already have an account ? </button> :
-                            <button onClick={() => setNewUser(!newUser)}> Create an account ? </button>
-                    }
-                    {
-                        !newUser &&
-                        <button onClick={demoHandler}>
-                            Try Out Demo Admin ?
-                        </button>
-                    }
+                    
+                    
 
                 </div>
                 <form className="input-div" onSubmit={handleSubmit}>
@@ -304,11 +265,20 @@ const Login = () => {
                             newUser && user.password === user.confirmPassword && <input className="btn" type="submit" value="Submit" />
                         }
 
-
+                        <div style={{display:"flex",flexDirection:'column',justifyContent:"center",alignItems:'center',gap:'5px',marginTop:'10px'}}>
+                            
+                        {newUser ? <Link onClick={() => setNewUser(!newUser)}> Already have an account ? </Link> :
+                                <Link onClick={() => setNewUser(!newUser)}> Create an account ? </Link>}
+                            {
+                        <Link onClick={demoHandler}>
+                            Try Out Demo Admin ?
+                        </Link>
+                    }
+</div>
+                    
                     </div>
 
                     {
-                        !newUser &&
                         <div className="social-links" onClick={handleGoogleSignIn}>
                             <span>Login with Google</span>    <button > <i class="fab fa-google"></i></button>
 

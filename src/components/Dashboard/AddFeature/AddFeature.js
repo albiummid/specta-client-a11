@@ -3,20 +3,15 @@ import { useForm } from "react-hook-form";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './AddFeature.css'
 import swal from 'sweetalert';
-import { useHistory } from 'react-router';
+import { GetContexts } from '../../../context/AuthProvider';
 const AddFeature = () => {
   const [file, setFile] = useState(null);
   const { register, handleSubmit } = useForm();
   const [demo, setDemo] = useState(false);
-  const history = useHistory();
+  const { user } = GetContexts();
   useEffect(() => {
-    const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
-    if (loggedInUser.isAdmin === 'false') {
-      history.replace('/');
-    }
-    if (loggedInUser.email === 'admin-demo@specta.com') {
+    if (user?.email === 'admin-demo@specta.com') {
       setDemo(true);
-      swal("Sorry!", "You are a demo admin,this feature is not available for you.", "warning");
     }
   }, []);
 

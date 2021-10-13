@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import './AddReview.css'
 import { useForm } from "react-hook-form";
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import swal from 'sweetalert';
+import { GetContexts } from '../../../context/AuthProvider';
 const AddReview = () => {
-  const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+
+  const {user} = GetContexts();
   const [file, setFile] = useState(null);
   const { register, handleSubmit } = useForm();
   const [demo, setDemo] = useState(false);
   useEffect(() => {
-    if (loggedInUser.email === 'admin-demo@specta.com') {
+    if (user?.email === 'admin-demo@specta.com') {
       setDemo(true);
-      swal("Sorry!", "You are a demo admin,you can't give a review", "warning");
     }
-  }, []);
+  }, [user?.email]);
   const onSubmit = data => {
     if (demo) {
       swal("Sorry!", "You are a demo admin,you can't give a review", "warning");
@@ -53,7 +54,7 @@ const AddReview = () => {
         </div>
         <div className="form-container">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" defaultValue={loggedInUser.name} name="name" required placeholder="name" ref={register} />
+            <input type="text" defaultValue={user?.name} name="name" required placeholder="name" ref={register} />
 
             <input type="text" name="location" required placeholder="location" ref={register} />
 

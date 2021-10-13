@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { NavHashLink as NavLink } from 'react-router-hash-link'
 import { useHistory, useParams } from 'react-router';
 import Sidebar from '../../Shared/Sidebar/Sidebar';
 import './Order.css';
-import { UserContext } from '../../../App';
 import ProcessPayment from './ProcessPayment/ProcessPayment';
 import swal from 'sweetalert';
+import { GetContexts } from '../../../context/AuthProvider';
 const Order = () => {
     const history = useHistory();
     const [orderInfo, setOrderInfo] = useState(null);
     const { id } = useParams();
-    const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+    const { user } = GetContexts();
     const [service, setService] = useState({});
     useEffect(() => {
         if (id) {
@@ -28,7 +29,7 @@ const Order = () => {
                 orderInfo,
                 orderTime: new Date(),
                 paymentId, status: "Pending",
-                email: loggedInUser.email,
+                email: user?.email,
             };
 
 
@@ -62,7 +63,7 @@ const Order = () => {
         setOrderInfo(order);
     }
     return (
-        <section className="dashboard-container">
+        <div className="dashboard-container">
             <Sidebar />
 
             {
@@ -77,9 +78,8 @@ const Order = () => {
                         </div>
                         <div className="form-container">
                             <form >
-
                                 <input onChange={handleChange} type="text" name="name" required placeholder="Your Name" />
-                                <input onChange={handleChange} type="text" value={loggedInUser?.email} name="email" required placeholder="Your Email" disabled />
+                                <input onChange={handleChange} type="text" value={user?.email} name="email" required placeholder="Your Email" disabled />
                                 <input onChange={handleChange} type="text" name="phone" required placeholder="Your Phone" />
                                 <input onChange={handleChange} type="text" name="address" required placeholder="Your Address" /><br />
 
@@ -94,10 +94,14 @@ const Order = () => {
                     :
                     <div className="dashboard-area">
                         <div className="section-header">
-                            <h1>Please Select a service Package</h1></div>
+                            <h1>Please Select a service Package</h1>
+                            <NavLink smooth to='/#services'>
+                                Let's Choose a package?
+                            </NavLink>
+                        </div>
                     </div>
             }
-        </section>
+        </div>
     );
 };
 

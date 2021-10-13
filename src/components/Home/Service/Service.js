@@ -10,7 +10,7 @@ const Service = () => {
         fetch("https://specta-web.herokuapp.com/services")
             .then(res => res.json())
             .then(data => setServiceData(data))
-    });
+    },[]);
     const handleClick = (id) => {
         const url = `/dashboard/order/${id}`;
         history.push(url);

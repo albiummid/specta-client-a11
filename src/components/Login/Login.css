@@ -3,7 +3,7 @@
   border-right: 2px solid teal;
   justify-content: center;
   display: flex;
-  width: 650px;
+  max-width: 650px;
   margin: 200px auto;
   box-shadow: 10px 10px 15px gray;
   border-radius: 10px;
@@ -44,8 +44,10 @@ textarea:focus {
 .input-div,
 .img-div {
   width: 300px;
-  display: grid;
-  grid-template-rows: 350px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -75,9 +77,12 @@ textarea:focus {
   width: 10px;
 }
 .social-links {
-  cursor: s;
+  cursor: pointer;
   display: flex;
-  justify-content: space-around;
+  height: 50px;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 10px;
   align-items: center;
   border: 1px solid teal;
   border-radius: 5px;
@@ -128,6 +133,7 @@ textarea:focus {
     width: 320px;
   }
   .img-div {
+    display: none;
     border-top: 1px solid teal;
     padding-top: 30px;
   }

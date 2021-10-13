@@ -79,7 +79,7 @@ li {
 .nav-link-active {
   border-bottom: 5px solid tomato;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .nav-item {
     height: 90px;
   }

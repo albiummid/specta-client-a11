@@ -6,20 +6,17 @@ import loader from '../../../images/infinity_loop_-_logo.gif'
 import toast, { Toaster } from 'react-hot-toast';
 import swal from 'sweetalert';
 import { useHistory } from 'react-router';
+import { GetContexts } from '../../../context/AuthProvider';
 
 const ManageOrder = () => {
     const [update, setUpdate] = useState(false)
     const [allOrders, setAllOrders] = useState([]);
     const [demo, setDemo] = useState(false);
-    const loggedInUser = JSON.parse(sessionStorage.getItem('user'));
+    const { user } = GetContexts();
     const history = useHistory();
     useEffect(() => {
-        if (loggedInUser.isAdmin === 'false') {
-            history.replace('/');
-        }
-        if (loggedInUser.email === 'admin-demo@specta.com') {
+        if (user.email === 'admin-demo@specta.com') {
             setDemo(true);
-            toast.error("You are a demo admin,you can't");
         }
     }, []);
 
@@ -29,6 +26,9 @@ const ManageOrder = () => {
             .then(data => setAllOrders(data))
     }, [update]);
     const handleDelete = (id) => {
+        if (user?.email === 'admin-demo@specta.com') {
+            toast.error("You are a demo admin,you can't");
+        }
         swal({
             title: "connection done?",
             text: "",
@@ -84,7 +84,7 @@ const ManageOrder = () => {
     }
 
     return (
-        <section className="dashboard-container">
+        <div className="dashboard-container">
             <Sidebar />
             <div className="dashboard-area">
                 <div className="section-header">
@@ -113,7 +113,7 @@ const ManageOrder = () => {
 
 
             </div>
-        </section>
+        </div>
     );
 };
 

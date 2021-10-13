@@ -4,9 +4,9 @@ import { SiElectron } from 'react-icons/si';
 import './Navbar.css'
 import { NavHashLink as NavLink } from 'react-router-hash-link'
 import firebase from "firebase/app";
-import { UserContext } from '../../../App';
+import { GetContexts } from '../../../context/AuthProvider';
 const Navbar = () => {
-    const [userData, setUserData] = useContext(UserContext);
+    const {user} = GetContexts();
     const history = useHistory();
     const [active, setActive] = useState()
     const [click, setClick] = useState(false);
@@ -46,6 +46,9 @@ const Navbar = () => {
                         <NavLink smooth to='/#services' onClick={() => setActive("services")} className={active === "services" ? "nav-link active" : "nav-link"} > Services </NavLink>
                     </li>
                     <li className="nav-item">
+                        <NavLink smooth to='/#features' onClick={() => setActive("features")} className={active === "features" ? "nav-link active" : "nav-link"} > Features </NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink onClick={() => setActive("about")} className={active === "about" ? "nav-link active" : "nav-link"} smooth to="/#about"> About Us </NavLink>
                     </li>
                     <li className="nav-item">
@@ -54,17 +57,17 @@ const Navbar = () => {
 
 
                     {
-                        userData?.name &&
+                        user?.displayName &&
                         <li className="nav-item">
                             <p className="nav-link user-name">
-                                {userData.name}
+                                {user.displayName}
                             </p>
                         </li>
 
                     }
                     <li className="nav-item">
                         {
-                            userData?.email ? <NavLink smooth to='/' onClick={handleSignOut} className="nav-link-mobile">Sign Out</NavLink>
+                            user?.email ? <NavLink smooth to='/' onClick={handleSignOut} className="nav-link-mobile">Sign Out</NavLink>
                                 :
                                 <NavLink smooth to="/login" className="nav-link-mobile">Sign In</NavLink>
                         }
@@ -72,7 +75,7 @@ const Navbar = () => {
 
                     <li className="nav-item">
                         {
-                            userData?.email ?
+                            user?.email ?
                                 <button onClick={handleSignOut} className="nav-btn">Sign Out</button>
                                 :
                                 <button onClick={handleSignIn} className="nav-btn">Sign In</button>
