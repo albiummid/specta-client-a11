@@ -25,7 +25,7 @@ function App() {
     else {
       setUserData({});
     }
-  }, [])
+  }, []);
 
 
   return (
