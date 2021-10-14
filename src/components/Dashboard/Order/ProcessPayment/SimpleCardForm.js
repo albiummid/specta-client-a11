@@ -54,7 +54,7 @@ const SimplecardForm = ({ handlePaymentSuccess }) => {
                     CVC: 424
                 </h5>
                 <h5>
-                    ZIP: 1344
+                    ZIP: 13444
                 </h5>
                </div>
                 <button className="brand-btn" type="submit" disabled={!stripe}>
